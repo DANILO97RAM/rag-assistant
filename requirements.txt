@@ -1,0 +1,13 @@
+pandas==3.0.2
+
+# Web scraping
+playwright==1.58.0
+beautifulsoup4==4.14.3
+lxml==6.0.2
+httpx==0.28.1
+urllib3==2.6.3  
+
+#language processing
+langchain-text-splitters 
+tiktoken 
+tokenizer
