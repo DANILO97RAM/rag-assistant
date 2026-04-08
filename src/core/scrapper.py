@@ -1,33 +1,22 @@
 """
-Scraper monolítico concurrente para bancolombia.com/personas
+Scraper concurrente en 2 fases para la pagina: bancolombia.com/personas; 
+aunque puede ser adaptado a otros sitios con estructura similar.
+   > Htmls dinámicos, requiere renderizado completo para este caso particular usamos Playwright;
+   > Sin embargo, en caso de requerir usar otras herramientas como Scrapy o BeautifulSoup, 
+   > se podrían adaptar las funciones de extracción de contenido y links. 
+   > Dandole la flexibilidad de usar otras herramienta más adecuada para cada caso.
+   > Esto anterior para mostrar un diseño modular y adaptable a diferentes necesidades de scraping.
 
-Implementación en 2 fases:
-1. Descubrimiento BFS de URLs (secuencial, rápido)
-2. Scraping concurrente de contenido (paralelo con semáforo)
+Fase 1: Descubrimiento BFS de URLs.
+Fase 2: Scraping paralelo de contenido con semáforo.
 
-Extrae páginas web usando Playwright (JavaScript rendering) y las convierte
-directamente a un DataFrame de pandas con estructura:
-  - id: hash de la URL (unicidad)
-  - metadata: {url, title, content, category}
-  - texto: contenido extraído de la página
-
-NO guarda archivos JSON intermedios. Retorna DataFrame en memoria.
-
-Características de concurrencia:
-  - Hasta 8 requests simultáneos por defecto (configurable con --concurrency)
-  - Usa asyncio.gather() + Semaphore para control de tasa
-  - Procesa 50 páginas por defecto en ~1-2 minutos
-
-Uso:
-    python scripts/scrapper.py                                    # default: 50 páginas, 8 concurrent
-    python scripts/scrapper.py --max-pages 100 --concurrency 10  # 100 páginas, 10 concurrent
-    python scripts/scrapper.py --depth 3 --max-pages 200         # búsqueda más profunda
+Retorna un DataFrame con columnas: id, metadata, texto.
+Lista para limpieza, chunking y carga a base de conocimiento.
 """
 
-import argparse, asyncio, json, logging
+import asyncio, json, logging
 from datetime import datetime
 from pathlib import Path
-import sys
 import pandas as pd
 from urllib.parse import urljoin, urlparse
 from urllib.robotparser import RobotFileParser
@@ -96,16 +85,6 @@ def save_errors(errors: list[dict]) -> None:
 # ── Scraping concurrente ─────────────────────────────────────────────────────
 
 
-def parse_args(url: str = "https://www.bancolombia.com/personas") -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Crawler asíncrono para bancolombia.com/personas")
-    parser.add_argument("--base-url", default=url)
-    parser.add_argument("--depth", type=int, default=2, help="Profundidad máxima de crawl")
-    parser.add_argument("--max-pages", type=int, default=50, help="Número máximo de páginas a extraer")
-    parser.add_argument("--concurrency", type=int, default=8, help="Requests concurrentes simultáneos")
-    parser.add_argument("--crawl-delay", type=float, default=0.5, help="Delay entre batches (segundos)")
-    parser.add_argument("--no-robots", action="store_true", help="Deshabilitar robots.txt")
-    return parser.parse_args()
-
 
 async def fetch_page_content_only(context, url: str, semaphore: asyncio.Semaphore, max_retries: int = 3) -> dict | None:
     """Versión optimizada: solo extrae contenido, NO links.
@@ -156,7 +135,6 @@ async def fetch_page_content_only(context, url: str, semaphore: asyncio.Semaphor
                     await page.close()
 
         return None
-
 
 async def discover_urls_bfs(base_url: str, max_depth: int, max_pages: int, respect_robots: bool) -> list[str]:
     """Fase 1: Descubrimiento rápido de URLs usando BFS.
@@ -224,29 +202,21 @@ async def discover_urls_bfs(base_url: str, max_depth: int, max_pages: int, respe
     logger.info("✅ Fase 1 completada: %d URLs descubiertas", len(discovered))
     return discovered[:max_pages]
 
-
 async def crawl_to_dataframe(url: str, depth: int, max_pages: int, concurrency: int) -> list[dict]:
     """Crawler concurrente en 2 fases:
     1. Descubrimiento BFS de URLs
     2. Scraping paralelo de contenido
     """
-    args = argparse.Namespace(
-        base_url=url,
-        depth=depth,
-        max_pages=max_pages,
-        concurrency=concurrency,
-        no_robots=False
-    )
     logger.info("🚀 Crawler concurrente iniciado")
-    logger.info("   Base: %s", args.base_url)
-    logger.info("   Depth: %d | Max pages: %d | Concurrency: %d", args.depth, args.max_pages, args.concurrency)
+    logger.info("   Base: %s", url)
+    logger.info("   Depth: %d | Max pages: %d | Concurrency: %d", depth, max_pages, concurrency)
 
     # Fase 1: Descubrir URLs con BFS
     urls = await discover_urls_bfs(
-        base_url=args.base_url,
-        max_depth=args.depth,
-        max_pages=args.max_pages,
-        respect_robots=not args.no_robots,
+        base_url=url,
+        max_depth=depth,
+        max_pages=max_pages,
+        respect_robots=True,
     )
 
     if not urls:
@@ -255,7 +225,7 @@ async def crawl_to_dataframe(url: str, depth: int, max_pages: int, concurrency: 
 
     # Fase 2: Scraping concurrente de contenido
     logger.info("\n📥 Fase 2: Scraping concurrente de %d URLs...", len(urls))
-    semaphore = asyncio.Semaphore(args.concurrency)
+    semaphore = asyncio.Semaphore(concurrency)
     errors = []
 
     async with async_playwright() as pw:
@@ -342,14 +312,14 @@ def run_scrapping(url: str = "https://www.bancolombia.com/personas", depth: int 
     """
     try:
         pages = asyncio.run(crawl_to_dataframe(url, depth, max_pages, concurrency))
-    
+
     except KeyboardInterrupt:
         logger.warning("⚠️ Scraping interrumpido por el usuario.")
-        sys.exit(130)
+        raise
 
     except Exception as exc:
         logger.error("❌ Error fatal durante el scraping: %s", exc, exc_info=True)
-        sys.exit(1)
+        raise
     
     # Convertir páginas a DataFrame
     if not pages:
@@ -368,10 +338,5 @@ def run_scrapping(url: str = "https://www.bancolombia.com/personas", depth: int 
     return df
         
 
-if __name__ == "__main__":
-    df = run_scrapping()
-    if df is not None:
-        logger.info("\n🎯 Ejecución completada. DataFrame disponible con %d registros.", len(df))
-    else:
-        logger.warning("⚠️ No se generó DataFrame.")
+
 

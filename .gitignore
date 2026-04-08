@@ -1,4 +1,7 @@
+.venv/*
 venv/*
+
 src/core/__pycache__/*
+src/config/__pycache__/*
 
 data/*

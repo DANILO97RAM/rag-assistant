@@ -1,20 +1,22 @@
+PYTHON_BIN=python3.12
+
 setup:
-	python3 -m venv venv
-	./venv/bin/pip install -r requirements.txt
+	$(PYTHON_BIN) -m venv venv
+	./venv/bin/pip install -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
 	sudo ./venv/bin/playwright install-deps chromium
 
-scrapper:
-	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10
-
 main:
-	./venv/bin/python src/main.py
+	./venv/bin/python src/main.py --depth 2 --max-pages 5 --concurrency 5
 	
 docker-up:
 	docker compose up -d
 
 clean:
-	rm -rf venv
+	rm -rf venv venv
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 
-clean_json_crawled:
-	find . -type f -name "crawled_*.json" -delete
+# scrapper:
+# 	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10
+
+# clean_json_crawled:
+# 	find . -type f -name "crawled_*.json" -delete

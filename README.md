@@ -1,43 +1,56 @@
-# rag-assistant 
+# rag-assistant
 
-En este proyecto se implementa un asistente virtual para el sitio de personas de Bancolombia, utilizando una arquitectura RAG (Retrieval-Augmented Generation) y exponiendo sus capacidades a través de un servidor MCP (Model Context Protocol). El sistema incluye scraping de contenido, procesamiento y limpieza de datos, generación de embeddings, almacenamiento en una base vectorial, y un agente conversacional que responde consultas de los usuarios basándose en la información recuperada.
+Un asistente virtual para el sitio de personas de Bancolombia basado en arquitectura RAG (Retrieval-Augmented Generation), expuesto mediante servidor MCP (Model Context Protocol). El sistema integra scraping de contenido, procesamiento de datos, generación de embeddings, almacenamiento vectorial y un agente conversacional.
 
-## Arquitectura y Diseño Modular
+## Requisitos
 
+- **Python**: 3.11 mínimo (probado con Python 3.12)
+
+## Arquitectura
+
+```
 src/
-├── config/             # Configuración y constantes 
-├── core/               # lógica central del negocio
-│   ├── scraper.py      # Lógica basada en Playwright
-│   ├── processor.py    # Limpieza y Chunking
-│   └── embedder.py     # Generación de vectores
-├── services/           # Adaptadores externos
-│   ├── database.py     # PostgreSQL + pgvector 
-│   └── mcp_server.py   # El servidor FastMCP
-└── main.py             # Orquestador del pipeline de ingesta
+├── config/              # Configuración, constantes y logging
+│   └── logger.py        # Logging centralizado
+├── core/                # Lógica de dominio
+│   ├── scraper.py       # Scraping con Playwright
+│   ├── cleaner.py       # Normalización de texto
+│   ├── chunker.py       # Segmentación de chunks
+│   ├── processor.py     # Orquestación limpieza + chunking
+│   └── embedder.py      # Generación de embeddings
+├── services/            # Adaptadores externos
+│   ├── database.py      # PostgreSQL + pgvector
+│   └── mcp_server.py    # Servidor FastMCP
+└── main.py              # Orquestador del pipeline
+```
 
-El proyecto sigue una estructura modular que aplica principios de Arquitectura Limpia para garantizar la separación de preocupaciones y la escalabilidad del sistema RAG.
+### Componentes Principales
 
-### Organización del Proyecto
+| Módulo | Responsabilidad |
+|--------|-----------------|
+| **main.py** | Punto de entrada único; orquesta scraping, limpieza, chunking e indexación |
+| **scraper.py** | Crawling BFS de 50+ páginas con renderizado dinámico |
+| **cleaner.py** | Normalización y eliminación de ruido HTML |
+| **chunker.py** | Segmentación recursiva (ADR-006) para optimizar contexto semántico |
+| **database.py** | Persistencia en PostgreSQL + pgvector |
+| **mcp_server.py** | Exposición de herramientas (search_knowledge_base, list_categories) |
 
-src/main.py: Punto de entrada único para el pipeline de datos. Orquesta secuencialmente el scraping, la limpieza, la generación de chunks y la carga vectorial
+## Pipeline de Datos
 
-src/core/: Contiene la lógica de dominio y procesamiento de datos.
-* scraper.py: Implementación de Playwright para manejo de contenido dinámico
-* cleaner.py: Lógica de normalización y eliminación de ruido HTML
-* chunker.py: Estrategia de segmentación recursiva (ADR-006) para optimizar el contexto semántico
+1. **Adquisición**: Crawling concurrente con respeto a robots.txt
+2. **Procesamiento**: Transformación a DataFrames para limpieza y segmentación
+3. **Indexación**: Generación de embeddings y almacenamiento vectorial
+4. **Exposición**: Servidor MCP consume la base de datos
 
-src/services/: Adaptadores para servicios externos y protocolos.
-* database.py: Gestión de persistencia en PostgreSQL + pgvector
-* mcp_server.py: Servidor FastMCP que expone las herramientas obligatorias (search_knowledge_base, list_categories)
+## Ejecución
 
-src/config/: Centralización de variables de entorno y constantes del sistema
+```bash
+# Configurar entorno e instalar dependencias
+make setup
 
-## Flujo de Datos (Pipeline)
-La arquitectura está diseñada como un flujo unidireccional:
-Adquisición: Crawling de 50+ páginas con navegación BFS y respeto a robots.txt
+# Ejecutar scraping (50 páginas por defecto)
+make scraper
 
-Procesamiento: Transformación de datos crudos a DataFrames para limpieza y segmentación
-
-Indexación: Generación de embeddings con XXX y almacenamiento vectorial
-
-Exposición: El servidor MCP consume la base de datos para servir al agente conversacional
+# Iniciar pipeline completo
+make run
+```
