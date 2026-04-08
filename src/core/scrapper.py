@@ -291,12 +291,11 @@ def list_json_to_df(pages: list[dict]) -> pd.DataFrame:
         url = page["url"]
         record = {
             "id": hash(url),
-            "metadata": {
+            "metadata": json.dumps({
                 "url": url,
                 "title": page.get("title", ""),
-                "content": page.get("content", ""),
                 "category": page.get("category", ""),
-            },
+            }, ensure_ascii=False),
             "texto": page.get("content", ""),
         }
         records.append(record)
@@ -336,7 +335,3 @@ def run_scrapping(url: str = "https://www.bancolombia.com/personas", depth: int 
     logger.info("✅ DataFrame creado exitosamente con %d registros", len(df))
     
     return df
-        
-
-
-

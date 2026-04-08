@@ -46,14 +46,6 @@ class TextCleaner:
             return metadata
 
     def _validate_dataframe(self, process_path: str = ""):
-        if "metadata" in self.df.columns and self.df["metadata"].dtype == object:
-            if self.df["metadata"].apply(lambda x: isinstance(x, dict)).any():
-                if self.logger:
-                    self.logger.warning(f"{self.tag} 'metadata' column contains dicts, converting to JSON string")
-                self.df["metadata"] = self.df["metadata"].apply(
-                    lambda x: json.dumps(x) if isinstance(x, dict) else x
-                )
-
         missing_columns = self._EXPECTED_COLS - set(self.df.columns)
         if missing_columns:
             missing_str = ", ".join(sorted(missing_columns))
