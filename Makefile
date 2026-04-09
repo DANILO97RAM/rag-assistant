@@ -38,10 +38,11 @@ update-requirements:
 	./venv/bin/pip install --upgrade -r requirements.txt
 
 db_unit-test:
-	./venv/bin/python tests/db/test_chromadb.py -v -s
+	cd tests 
+	./venv/bin/pytest tests/test_chromadb.py -v -s
 
-db_queries:
-	./venv/bin/python tests/db/test_chromadb_queries.py -v -s
+db_queries_test:
+	./venv/bin/python tests/test_chromadb_queries.py -v -s
 # scrapper:
 # 	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10
 

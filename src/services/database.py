@@ -201,11 +201,11 @@ class ChromaDBService:
             self.create_collection()
         
         # Importar embedder para generar embedding del query
-        from src.core.embedder import create_embedder
+        from core.embedder import create_embedder
         
         # Usar Sentence Transformers (debe coincidir con los embeddings indexados)
         embedder = create_embedder("sentence-transformers")
-        query_embedding = embedder.embed_documents([query])[0]
+        query_embedding = embedder.embedding_model.embed_documents([query])[0]
         
         # Buscar en ChromaDB
         results = self.collection.query(
