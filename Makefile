@@ -6,7 +6,7 @@ setup:
 	sudo ./venv/bin/playwright install-deps chromium
 
 main:
-	./venv/bin/python src/main.py --depth 2 --max-pages 5 --concurrency 5
+	./venv/bin/python src/main.py --depth 2 --max-pages 50 --concurrency 10
 	
 docker-up:
 	docker compose up -d
