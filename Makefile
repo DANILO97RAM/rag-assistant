@@ -31,7 +31,6 @@ test_evaluate_chunk_strategy:
 test_compare_embeddings_20_samples:
 	./venv/bin/python  tests/compare_embeddings.py --gemini-key $GEMINI_API_KEY --sample-size 20
 
-test_eva
 # scrapper:
 # 	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10
 
