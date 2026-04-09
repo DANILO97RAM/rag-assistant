@@ -1,14 +1,22 @@
 """
-Embedder: Genera embeddings de chunks concatenando los header metadata.title + texto del df previamente limpiado y chunked. 
-Soporta múltiples proveedores de embeddings (Google Gemini, OpenAI, Sentence Transformers). 
+Embedder: Módulo para generar embeddings de chunks de texto.
 
-Para este caso, usaremos Gemini como modelo principal, pero se puede configurar fácilmente para usar otros modelos.
-Retorna un DataFrame con los embeddings generados.
+Concatena el título extraído de metadata con el contenido del texto antes de generar los embeddings.
+Trabaja con DataFrames previamente limpiados y chunked.
 
-Diseñado para trabajar con ChromaDB y modelos de embedding configurables.
-Aunque puede ser adapatado para otros proveedores, se recomienda usar Gemini para obtener mejores resultados en español 
-y su generosa cuota gratuita.
+Características:
+- Soporte multi-proveedor: Google Gemini, OpenAI, Sentence Transformers
+- Procesamiento por lotes (batches) para mejor rendimiento
+- Modelo local por defecto: "all-MiniLM-L6-v2" (sin costo, sin dependencias externas)
+- Integración lista para ChromaDB
+- Arquitectura extensible para agregar nuevos proveedores
 
+Opciones de proveedores:
+1. Sentence Transformers (local, gratuito, recomendado para pruebas)
+2. Google Gemini (API, excelente para español, cuota gratuita generosa)
+3. OpenAI (API, máxima calidad, requiere suscripción)
+
+Retorno: DataFrame con columna adicional 'embedding' (List[float]) lista para indexar en bases de datos vectoriales.
 """
 
 import json
@@ -36,9 +44,8 @@ class BaseEmbeddingModel(ABC):
         """Retorna el nombre del modelo"""
         pass
 
-
 class GeminiEmbeddingModel(BaseEmbeddingModel):
-    """Modelo de embeddings usando Google Gemini"""
+    """Modelo de embeddings usando Google Gemini (text-embedding-004)"""
     
     def __init__(self, api_key: str, model_name: str = "models/text-embedding-004"):
         try:
@@ -74,7 +81,6 @@ class GeminiEmbeddingModel(BaseEmbeddingModel):
     def get_model_name(self) -> str:
         return self.model_name
 
-
 class SentenceTransformerModel(BaseEmbeddingModel):
     """Modelo de embeddings usando Sentence Transformers (local, gratuito)"""
     
@@ -100,7 +106,6 @@ class SentenceTransformerModel(BaseEmbeddingModel):
     
     def get_model_name(self) -> str:
         return self.model_name
-
 
 class OpenAIEmbeddingModel(BaseEmbeddingModel):
     """Modelo de embeddings usando OpenAI"""
@@ -187,7 +192,7 @@ class Embedder:
         title = self._extract_title_from_metadata(row.get("metadata", ""))
         texto = row.get("texto", "")
         
-        # Concatenar título + texto
+        # Concatenamos el título + texto
         if title:
             return f"{title}\n{texto}"
         return texto
