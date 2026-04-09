@@ -43,6 +43,13 @@ db_unit-test:
 
 db_queries_test:
 	./venv/bin/python tests/test_chromadb_queries.py -v -s
+
+inspect_scrapping:
+	./venv/bin/python scripts/inspect_scrapping.py 
+
+test_queries_from_scrapping:
+	./venv/bin/python tests/test_realistic_queries.py -v -s
+
 # scrapper:
 # 	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10
 
