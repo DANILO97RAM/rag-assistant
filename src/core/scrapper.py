@@ -11,6 +11,11 @@ Fase 1: Descubrimiento BFS de URLs.
 Fase 2: Scraping paralelo de contenido con semáforo.
 
 Retorna un DataFrame con columnas: id, metadata, texto.
+- id: hash de la URL
+- metadata: JSON con {url, title, category, fecha_extraccion}
+- texto: Contenido limpio de la página
+
+Se persiste automáticamente en data/scraped_pages.parquet (ver main.py).
 Lista para limpieza, chunking y carga a base de conocimiento.
 """
 
@@ -273,20 +278,24 @@ async def crawl_to_dataframe(url: str, depth: int, max_pages: int, concurrency: 
 def list_json_to_df(pages: list[dict]) -> pd.DataFrame:
     """Convierte lista de dicts a DataFrame con 3 columnas id, metadata y texto.
     Id: hash de la url para asegurar unicidad.
-    Metadata: dict con url, title, category.
+    Metadata: dict con url, title, category, fecha_extraccion.
     Texto: Metadata.content 
     Ejemplo de estructura final:
     | id          | metadata                                                      |          texto                       |
     |-------------|---------------------------------------------------------------|--------------------------------------|
     |             | {"url": "https://www.bancolombia.com/personas/creditos",      |                                      |
     | 1234567890  |   "title": "Créditos - Bancolombia",                          | "Contenido completo de la página..." | 
-    |             |   "category": "creditos"}                                     |                                      |
+    |             |   "category": "creditos",                                     |                                      |
+    |             |   "fecha_extraccion": "2026-04-09T14:30:00"}                  |                                      |
     |-------------|---------------------------------------------------------------|--------------------------------------|
     | 09876543210 | {"url": "https://www.bancolombia.com/personas/inversiones",   |                                      |
     |             |   "title": "Inversiones - Bancolombia",                       | "Contenido completo de la página..." |
-    |             |   "category": "inversiones"}                                  |                                      |   
+    |             |   "category": "inversiones",                                  |                                      |   
+    |             |   "fecha_extraccion": "2026-04-09T14:30:00"}                  |                                      |   
     """
     records = []
+    fecha_extraccion = datetime.now().isoformat()  # Timestamp único para toda la extracción
+    
     for page in pages:
         url = page["url"]
         record = {
@@ -295,6 +304,7 @@ def list_json_to_df(pages: list[dict]) -> pd.DataFrame:
                 "url": url,
                 "title": page.get("title", ""),
                 "category": page.get("category", ""),
+                "fecha_extraccion": fecha_extraccion,
             }, ensure_ascii=False),
             "texto": page.get("content", ""),
         }
