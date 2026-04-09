@@ -19,15 +19,16 @@ SCRAPING_URL = "https://www.bancolombia.com/personas"
 SCRAPING_DEPTH = 2
 SCRAPING_MAX_PAGES = 50
 SCRAPING_CONCURRENCY = 8
-CHUNKS_SIZE=1024
-CHUNKS_OVERLAP=128
+CHUNKS_SIZE = 1024
+CHUNKS_OVERLAP = 128
 
 # Paths para persistencia
 DATA_DIR = Path("data")
 CHUNKS_FILE = DATA_DIR / "chunks.parquet"
+SCRAPED_PAGES_FILE = DATA_DIR / "scraped_pages.parquet"
 
 
-def run(url, depth, max_pages, concurrency, save_chunks=True):
+def run(url, depth, max_pages, concurrency, save_chunks=True, force_scrape=False):
     setup_logging(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
@@ -36,19 +37,29 @@ def run(url, depth, max_pages, concurrency, save_chunks=True):
     # Crear directorio de datos si no existe
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Fase 1: Scraping
-    logger.info("📡 Fase 1: Web Scraping")
-    df = run_scrapping(
-        url=url,
-        depth=depth,
-        max_pages=max_pages,
-        concurrency=concurrency,
-    )
-    if df is None:
-        logger.warning("No se generó DataFrame. Pipeline detenido.")
-        return None
+    # Fase 1: Scraping (o cargar desde disco)
+    if not force_scrape and SCRAPED_PAGES_FILE.exists():
+        logger.info(f"📂 Cargando páginas scrapeadas desde {SCRAPED_PAGES_FILE}")
+        df = pd.read_parquet(SCRAPED_PAGES_FILE)
+        logger.info(f"✅ {len(df)} páginas cargadas desde disco")
+    else:
+        logger.info("📡 Fase 1: Web Scraping")
+        df = run_scrapping(
+            url=url,
+            depth=depth,
+            max_pages=max_pages,
+            concurrency=concurrency,
+        )
+        if df is None:
+            logger.warning("No se generó DataFrame. Pipeline detenido.")
+            return None
 
-    logger.info(f"✅ Scraping completado: {len(df)} páginas")
+        logger.info(f"✅ Scraping completado: {len(df)} páginas")
+        
+        # Guardar páginas scrapeadas
+        logger.info(f"💾 Guardando páginas scrapeadas en {SCRAPED_PAGES_FILE}")
+        df.to_parquet(SCRAPED_PAGES_FILE, index=False)
+        logger.info(f"✅ Páginas guardadas exitosamente")
 
     # Fase 2: Limpieza
     logger.info("🧹 Fase 2: Limpieza de texto")
@@ -98,6 +109,7 @@ def load_chunks_from_disk():
     logger.info(f"✅ {len(df)} chunks cargados")
     return df
 
+
 def run_pipeline_and_save_embeddings():
     parser = argparse.ArgumentParser(description="RAG Assistant Pipeline")
     parser.add_argument("--url", default=SCRAPING_URL, help="URL para scraping")
@@ -105,6 +117,7 @@ def run_pipeline_and_save_embeddings():
     parser.add_argument("--max-pages", type=int, default=SCRAPING_MAX_PAGES, help="Máximo de páginas")
     parser.add_argument("--concurrency", type=int, default=SCRAPING_CONCURRENCY, help="Concurrencia")
     parser.add_argument("--no-save", action="store_true", help="No guardar chunks en disco")
+    parser.add_argument("--force-scrape", action="store_true", help="Forzar scraping aunque exista archivo guardado")
     
     args = parser.parse_args()
     run(
@@ -112,12 +125,11 @@ def run_pipeline_and_save_embeddings():
         args.depth, 
         args.max_pages, 
         args.concurrency,
-        save_chunks=not args.no_save
+        save_chunks=not args.no_save,
+        force_scrape=args.force_scrape
     )
-
-
 if __name__ == "__main__":
     
-    # run_pipeline_and_save_embeddings()
+    run_pipeline_and_save_embeddings()
 
-    load_chunks_from_disk()
+    # load_chunks_from_disk()
