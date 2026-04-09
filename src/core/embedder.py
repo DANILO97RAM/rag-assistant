@@ -45,33 +45,32 @@ class BaseEmbeddingModel(ABC):
         pass
 
 class GeminiEmbeddingModel(BaseEmbeddingModel):
-    """Modelo de embeddings usando Google Gemini (text-embedding-004)"""
+    """Modelo de embeddings usando Google Gemini (nuevo SDK google.genai)"""
     
-    def __init__(self, api_key: str, model_name: str = "models/text-embedding-004"):
+    def __init__(self, api_key: str, model_name: str = "gemini-embedding-001"):
         try:
-            import google.generativeai as genai
+            from google import genai
         except ImportError:
             raise ImportError(
-                "google-generativeai no está instalado. "
-                "Ejecuta: pip install google-generativeai"
+                "google-genai no está instalado. "
+                "Ejecuta: pip install google-genai"
             )
         
-        genai.configure(api_key=api_key)
+        self.client = genai.Client(api_key=api_key)
         self.model_name = model_name
-        self.dimension = 768  # text-embedding-004 tiene 768 dimensiones
+        self.dimension = 768  # gemini-embedding-001 tiene 768 dimensiones
         
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
-        import google.generativeai as genai
+        from google import genai
         
         embeddings = []
-        # Gemini permite batch embedding
+        # Gemini nuevo SDK procesa texto por texto
         for text in texts:
-            result = genai.embed_content(
+            result = self.client.models.embed_content(
                 model=self.model_name,
-                content=text,
-                task_type="retrieval_document"
+                contents=text
             )
-            embeddings.append(result['embedding'])
+            embeddings.append(result.embeddings[0].values)
         
         return embeddings
     
@@ -305,7 +304,7 @@ def create_embedder(
             raise ValueError("API key requerida para Gemini")
         model = GeminiEmbeddingModel(
             api_key=api_key,
-            model_name=model_name or "models/text-embedding-004"
+            model_name=model_name or "gemini-embedding-001"
         )
     
     elif provider == "openai":
@@ -332,4 +331,3 @@ def create_embedder(
         batch_size=batch_size,
         logger=logger
     )
-# Implementación completa del Embedder con soporte multi-provider

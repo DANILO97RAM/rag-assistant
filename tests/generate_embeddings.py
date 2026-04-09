@@ -3,7 +3,7 @@ Script de ejemplo para generar embeddings desde chunks guardados.
 
 Uso:
     python generate_embeddings.py --provider sentence-transformers
-    python generate_embeddings.py --provider gemini --api-key TU_API_KEY
+    python generate_embeddings.py --provider gemini --api-key $GEMINI_API_KEY
 """
 
 import argparse
@@ -23,7 +23,6 @@ from core.embedder import create_embedder
 # Cargar variables de entorno
 load_dotenv()
 
-EMBEDDINGS_FILE = DATA_DIR / "embeddings.parquet"
 
 
 def main():
@@ -83,6 +82,7 @@ def main():
         raise
     
     # Guardar en disco
+    EMBEDDINGS_FILE = DATA_DIR / f"embeddings_{args.provider}.parquet"
     logger.info(f"💾 Guardando embeddings en {EMBEDDINGS_FILE}")
     df_with_embeddings.to_parquet(EMBEDDINGS_FILE, index=False)
     
@@ -97,4 +97,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# Script para generar embeddings

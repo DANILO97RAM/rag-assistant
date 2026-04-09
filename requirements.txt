@@ -14,7 +14,7 @@ tokenizer
 
 # Embeddings
 sentence-transformers>=2.2.0  # Local embeddings (gratuito)
-google-generativeai>=0.3.0     # Gemini embeddings
+google-genai>=0.1.0            # Gemini embeddings (nuevo SDK)
 openai>=1.0.0                  # OpenAI embeddings (opcional)
 
 # Vector database
@@ -23,9 +23,8 @@ chromadb>=0.4.0                # ChromaDB para almacenamiento vectorial
 # Utilidades
 python-dotenv>=1.0.0           # Manejo de variables de entorno
 pydantic>=2.0.0                # Validación de datos (requerido por chromadb)
+numpy>=1.24.0                  # Cálculos numéricos para comparaciones
 
 # Testing
 pytest>=7.0.0
 pytest-asyncio>=0.21.0
-fastparquet
-pyarrow
