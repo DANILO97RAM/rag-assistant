@@ -15,6 +15,10 @@ clean:
 	rm -rf venv venv
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 
+test_embeddings:
+	./venv/bin/pip install pytest --quiet || true
+	./venv/bin/pytest tests/test_embedder.py -v
+
 # scrapper:
 # 	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10
 
