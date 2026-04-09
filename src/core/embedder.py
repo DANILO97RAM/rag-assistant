@@ -58,7 +58,7 @@ class GeminiEmbeddingModel(BaseEmbeddingModel):
         
         self.client = genai.Client(api_key=api_key)
         self.model_name = model_name
-        self.dimension = 768  # gemini-embedding-001 tiene 768 dimensiones
+        self.dimension = None  # Se detectará al generar primer embedding
         
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         from google import genai
@@ -70,12 +70,18 @@ class GeminiEmbeddingModel(BaseEmbeddingModel):
                 model=self.model_name,
                 contents=text
             )
-            embeddings.append(result.embeddings[0].values)
+            embedding_values = result.embeddings[0].values
+            
+            # Detectar dimensión del primer embedding
+            if self.dimension is None:
+                self.dimension = len(embedding_values)
+            
+            embeddings.append(embedding_values)
         
         return embeddings
     
     def get_dimension(self) -> int:
-        return self.dimension
+        return self.dimension if self.dimension is not None else 768
     
     def get_model_name(self) -> str:
         return self.model_name
