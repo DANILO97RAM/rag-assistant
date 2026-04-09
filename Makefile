@@ -6,7 +6,7 @@ setup:
 	sudo ./venv/bin/playwright install-deps chromium
 
 main:
-	./venv/bin/python src/main.py --depth 2 --max-pages 5 --concurrency 5
+	./venv/bin/python src/main.py --depth 2 --max-pages 50 --concurrency 10
 	
 docker-up:
 	docker compose up -d
@@ -14,6 +14,16 @@ docker-up:
 clean:
 	rm -rf venv venv
 	find . -type d -name "__pycache__" -exec rm -rf {} +
+
+test_embeddings:
+	./venv/bin/pip install pytest --quiet || true
+	./venv/bin/pytest tests/test_embedder.py -v
+
+generate_embeddings_sentence:
+	./venv/bin/python tests/generate_embeddings.py --provider sentence-transformers
+
+generate_embeddings_gemini:
+	./venv/bin/python tests/generate_embeddings.py --provider gemini --api-key $GEMINI_API_KEY
 
 # scrapper:
 # 	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10

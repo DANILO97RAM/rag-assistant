@@ -7,7 +7,7 @@ class Chunker:
         self,
         model_name: str = "gpt-4o",
         chunk_size: int = 1024,
-        chunk_overlap: int = 0,
+        chunk_overlap: int = 128,
         logger=None,
     ):
         self.tag = "[Chunker]"
