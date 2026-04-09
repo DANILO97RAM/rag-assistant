@@ -7,6 +7,9 @@ setup:
 
 main:
 	./venv/bin/python src/main.py --depth 2 --max-pages 50 --concurrency 10
+
+main-force:
+	./venv/bin/python src/main.py --depth 2 --max-pages 50 --concurrency 10 --force-scrape
 	
 docker-up:
 	docker compose up -d
@@ -15,22 +18,30 @@ clean:
 	rm -rf venv venv
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 
-test_embeddings:
+test-embeddings:
 	./venv/bin/pip install pytest --quiet || true
 	./venv/bin/pytest tests/test_embedder.py -v
 
-generate_embeddings_sentence:
+generate-embeddings-sentence:
 	./venv/bin/python tests/generate_embeddings.py --provider sentence-transformers
 
-generate_embeddings_gemini:
+generate-embeddings-gemini:
 	./venv/bin/python tests/generate_embeddings.py --provider gemini --api-key $GEMINI_API_KEY
 
-test_evaluate_chunk_strategy:
+test-evaluate-chunk-strategy:
 	./venv/bin/python tests/evaluate_chunking_strategies.py
 
-test_compare_embeddings_20_samples:
+test-compare-embeddings-20-samples:
 	./venv/bin/python  tests/compare_embeddings.py --gemini-key $GEMINI_API_KEY --sample-size 20
 
+update-requirements:
+	./venv/bin/pip install --upgrade -r requirements.txt
+
+db_unit-test:
+	./venv/bin/python tests/db/test_chromadb.py -v -s
+
+db_queries:
+	./venv/bin/python tests/db/test_chromadb_queries.py -v -s
 # scrapper:
 # 	./venv/bin/python src/core/scrapper.py --depth 2 --max-pages 50 --concurrency 10
 
