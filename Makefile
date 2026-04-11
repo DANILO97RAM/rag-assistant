@@ -1,5 +1,8 @@
 PYTHON_BIN=python3.12
 
+activate-venv:
+	source venv/bin/activate
+	
 setup:
 	$(PYTHON_BIN) -m venv venv
 	./venv/bin/pip install -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
@@ -48,6 +51,50 @@ inspect_scrapping:
 	./venv/bin/python scripts/inspect_scrapping.py 
 
 test_queries_from_scrapping:
+	./venv/bin/python tests/test_chromadb_realistic_queries.py
+
+# ============================================================================
+# SERVIDOR MCP
+# ============================================================================
+
+mcp_server:
+	cd mcp && ../venv/bin/python main.py
+
+mcp_test:
+	cd mcp && ../venv/bin/python test_server.py
+
+mcp_install:
+	./venv/bin/pip install fastmcp --quiet
+
+# ============================================================================
+# API REST (para Postman/HTTP)
+# ============================================================================
+
+api_server:
+	cd mcp && ../venv/bin/python api_server.py
+
+api_install:
+	./venv/bin/pip install fastapi uvicorn --quiet
+
+api_test:
+	curl http://localhost:8000/ && echo "" && curl http://localhost:8000/stats
+
+# ============================================================================
+# Indexación ChromaDB
+# ============================================================================
+
+db_index:
+	./venv/bin/python src/main.py --index-chromadb
+
+db_reset:
+	./venv/bin/python src/main.py --index-chromadb --reset-chromadb
+
+# ============================================================================
+# Análisis de contenido
+# ============================================================================
+
+analyze_content:
+	./venv/bin/python scripts/analyze_content.py
 	./venv/bin/python tests/test_realistic_queries.py -v -s
 
 # scrapper:

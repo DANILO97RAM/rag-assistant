@@ -379,7 +379,193 @@ print(f"Métrica: {stats['distance_metric']}")
 
 ---
 
-## 📊 Limitaciones y Recomendaciones
+## � Servidor MCP (Model Context Protocol)
+
+El sistema expone la base de conocimiento mediante un **servidor MCP** que cumple con los requisitos de la prueba técnica (Sección 3.4).
+
+### Características
+
+- ✅ **SDK Oficial**: FastMCP (Python)
+- ✅ **Transporte**: stdio (obligatorio)
+- ✅ **3 Tools**: search_knowledge_base, get_article_by_url, list_categories
+- ✅ **1 Resource**: knowledge-base://stats
+- ✅ **Validación**: Parámetros y manejo de errores
+
+### Ejecución del Servidor
+
+```bash
+# Desde la raíz del proyecto
+cd mcp
+python main.py
+```
+
+### Tools Disponibles
+
+#### 1. search_knowledge_base
+
+Búsqueda semántica en la base de conocimiento:
+
+```python
+search_knowledge_base(
+    query="¿Qué seguros ofrece Bancolombia?",
+    n_results=5,
+    category="seguros"  # opcional
+)
+```
+
+**Retorna:**
+```json
+{
+  "query": "¿Qué seguros ofrece Bancolombia?",
+  "total_results": 3,
+  "documents": [
+    {
+      "rank": 1,
+      "content": "Seguros Bancolombia Protege tu salud...",
+      "url": "https://www.bancolombia.com/personas/seguros",
+      "title": "Seguros Bancolombia",
+      "category": "seguros",
+      "similarity_score": 0.638,
+      "word_count": 738
+    }
+  ]
+}
+```
+
+#### 2. get_article_by_url
+
+Recupera contenido completo de un artículo:
+
+```python
+get_article_by_url(url="https://www.bancolombia.com/personas/creditos")
+```
+
+**Retorna:**
+```json
+{
+  "url": "https://www.bancolombia.com/personas/creditos",
+  "total_chunks": 2,
+  "title": "Créditos Bancolombia",
+  "category": "creditos",
+  "chunks": [...]
+}
+```
+
+#### 3. list_categories
+
+Lista todas las categorías disponibles:
+
+```python
+list_categories()
+```
+
+**Retorna:**
+```json
+{
+  "total_categories": 47,
+  "categories": ["a-la-mano", "creditos", "seguros", ...]
+}
+```
+
+### Resource Disponible
+
+**URI**: `knowledge-base://stats`
+
+Expone estadísticas de la base de conocimiento:
+- Total documentos indexados
+- Número de categorías
+- Dimensión de embeddings
+- Métrica de distancia
+- Fecha de última actualización
+
+### Testing del Servidor MCP
+
+```bash
+# Ejecutar tests automatizados
+cd mcp
+python test_server.py
+```
+
+**Output esperado:**
+```
+🧪 TESTING SERVIDOR MCP - BANCOLOMBIA
+============================================================
+
+📋 TEST 1: search_knowledge_base
+------------------------------------------------------------
+✅ search_knowledge_base: OK
+   → 3 resultados encontrados
+   → Score top-1: 0.723
+
+📋 TEST 2: get_article_by_url
+------------------------------------------------------------
+✅ get_article_by_url: OK
+   → 2 chunks recuperados
+
+📋 TEST 3: list_categories
+------------------------------------------------------------
+✅ list_categories: OK
+   → 47 categorías disponibles
+
+============================================================
+📊 RESUMEN DE PRUEBAS
+============================================================
+Resultado: 3/3 tests pasados
+
+🎉 ¡Todos los tests pasaron exitosamente!
+```
+
+### Integración con Agentes
+
+El servidor MCP puede ser consumido por cualquier agente conversacional compatible:
+
+**Claude Desktop:**
+```json
+{
+  "mcpServers": {
+    "bancolombia": {
+      "command": "python",
+      "args": ["/path/to/rag-assistant/mcp/main.py"],
+      "env": {
+        "CHROMA_PATH": "/path/to/data/chroma_db"
+      }
+    }
+  }
+}
+```
+
+**LangChain/Python:**
+```python
+import subprocess
+import json
+
+# Iniciar servidor MCP
+process = subprocess.Popen(
+    ["python", "mcp/main.py"],
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE
+)
+
+# Enviar request
+request = {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+        "name": "search_knowledge_base",
+        "arguments": {"query": "¿Qué créditos hay?"}
+    }
+}
+
+process.stdin.write(json.dumps(request).encode() + b'\n')
+response = json.loads(process.stdout.readline())
+```
+
+Ver documentación completa: [mcp/README.md](mcp/README.md)
+
+---
+
+## �📊 Limitaciones y Recomendaciones
 
 ### Limitaciones Actuales
 

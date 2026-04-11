@@ -20,6 +20,13 @@ openai>=1.0.0                  # OpenAI embeddings (opcional)
 # Vector database
 chromadb>=0.4.0                # ChromaDB para almacenamiento vectorial
 
+# MCP Server
+fastmcp>=0.1.0                 # FastMCP para servidor MCP (stdio)
+
+# API REST
+fastapi>=0.104.0               # Framework web para API REST
+uvicorn[standard]>=0.24.0      # Servidor ASGI para FastAPI
+
 # Utilidades
 python-dotenv>=1.0.0           # Manejo de variables de entorno
 pydantic>=2.0.0                # Validación de datos (requerido por chromadb)

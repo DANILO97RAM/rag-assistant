@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "description": "Dataset de evaluación para sistema RAG de Bancolombia",
+    "total_questions": 20,
+    "topics": [
+      "tarjetas_credito",
+      "cuentas_ahorro",
+      "creditos",
+      "seguros",
+      "vivienda",
+      "movilidad",
+      "beneficios",
+      "canales_servicio",
+      "productos_digitales"
+    ],
+    "created_date": "2026-04-08",
+    "version": "1.0"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "¿Qué tipos de tarjetas de crédito ofrece Bancolombia?",
+      "topic": "tarjetas_credito",
+      "expected_keywords": ["tarjeta", "crédito", "visa", "mastercard", "millas"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/tarjetas-de-credito"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "¿Cómo puedo abrir una cuenta de ahorros en Bancolombia de forma digital?",
+      "topic": "cuentas_ahorro",
+      "expected_keywords": ["cuenta", "ahorros", "digital", "app", "apertura"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/cuentas",
+        "https://www.bancolombia.com/personas/solicitud-de-productos/cuentas"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "¿Qué requisitos necesito para solicitar un crédito hipotecario?",
+      "topic": "creditos",
+      "expected_keywords": ["crédito", "hipotecario", "vivienda", "requisitos", "tasa"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/vivienda",
+        "https://www.bancolombia.com/personas/creditos"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "¿Cuáles son los seguros de salud que ofrece Bancolombia?",
+      "topic": "seguros",
+      "expected_keywords": ["seguro", "salud", "plan", "cobertura"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/seguros",
+        "https://www.bancolombia.com/personas/seguros/salud-vida/plan-salud-para-ti"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "¿Qué es el servicio A la Mano de Bancolombia y cómo funciona?",
+      "topic": "productos_digitales",
+      "expected_keywords": ["a la mano", "deposito", "retiro", "corresponsal"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/a-la-mano",
+        "https://www.bancolombia.com/personas/a-la-mano/deposito-a-la-mano"
+      ]
+    },
+    {
+      "id": 6,
+      "question": "¿Cuáles son los beneficios de tener la nómina en Bancolombia?",
+      "topic": "beneficios",
+      "expected_keywords": ["nómina", "beneficios", "descuentos", "exclusivos"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/beneficios/nomina"
+      ]
+    },
+    {
+      "id": 7,
+      "question": "¿Cómo puedo hacer giros o enviar dinero a otras personas?",
+      "topic": "canales_servicio",
+      "expected_keywords": ["giros", "transferencias", "enviar dinero"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/giros",
+        "https://www.bancolombia.com/personas/productos-servicios/giros"
+      ]
+    },
+    {
+      "id": 8,
+      "question": "¿Qué servicios están disponibles para colombianos que viven en el exterior?",
+      "topic": "productos_digitales",
+      "expected_keywords": ["exterior", "colombianos", "internacional", "remesas"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/banco-para-todos/colombianos-en-el-exterior"
+      ]
+    },
+    {
+      "id": 9,
+      "question": "¿Cuáles son las opciones de crédito de consumo disponibles?",
+      "topic": "creditos",
+      "expected_keywords": ["crédito", "consumo", "libre inversión", "tasa"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/creditos/consumo"
+      ]
+    },
+    {
+      "id": 10,
+      "question": "¿Qué canales de atención tiene Bancolombia para resolver dudas?",
+      "topic": "canales_servicio",
+      "expected_keywords": ["atención", "sucursal", "app", "telefono", "chat"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/contactanos",
+        "https://www.bancolombia.com/personas/productos-servicios/canales-servicio"
+      ]
+    },
+    {
+      "id": 11,
+      "question": "¿Cómo funciona el servicio de leasing en Bancolombia?",
+      "topic": "creditos",
+      "expected_keywords": ["leasing", "arrendamiento", "vehículo"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/productos-servicios/leasing"
+      ]
+    },
+    {
+      "id": 12,
+      "question": "¿Qué beneficios hay para hinchas del fútbol?",
+      "topic": "beneficios",
+      "expected_keywords": ["fútbol", "hinchas", "deportes", "descuentos"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/beneficios/futbol/hinchas"
+      ]
+    },
+    {
+      "id": 13,
+      "question": "¿Puedo comprar y vender dólares en efectivo con Bancolombia?",
+      "topic": "productos_digitales",
+      "expected_keywords": ["dólares", "divisas", "cambio", "efectivo"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/productos-servicios/compra-venta-dolares-efectivo"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "¿Qué opciones de inversión ofrece Bancolombia?",
+      "topic": "productos_digitales",
+      "expected_keywords": ["inversiones", "CDT", "fondos", "rentabilidad"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/productos-servicios/inversiones"
+      ]
+    },
+    {
+      "id": 15,
+      "question": "¿Cómo puedo usar el cajero multifuncional de Bancolombia?",
+      "topic": "canales_servicio",
+      "expected_keywords": ["cajero", "multifuncional", "transacciones", "retiro"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/productos-servicios/canales-servicio/fisico/cajero-multifuncional"
+      ]
+    },
+    {
+      "id": 16,
+      "question": "¿Qué es el Banco Privado y quiénes pueden acceder a él?",
+      "topic": "productos_digitales",
+      "expected_keywords": ["privada", "exclusivo", "inversión", "patrimonio"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/banco-para-todos/privada"
+      ]
+    },
+    {
+      "id": 17,
+      "question": "¿Cómo puedo negociar mi deuda con Bancolombia?",
+      "topic": "creditos",
+      "expected_keywords": ["deuda", "negociar", "refinanciar", "alternativas"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/alternativas-financieras/negociar-deuda"
+      ]
+    },
+    {
+      "id": 18,
+      "question": "¿Qué servicios ofrece la app de Bancolombia?",
+      "topic": "canales_servicio",
+      "expected_keywords": ["app", "móvil", "digital", "transacciones"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/productos-servicios/canales-servicio/movil/bancolombia-app"
+      ]
+    },
+    {
+      "id": 19,
+      "question": "¿Cuáles son los productos disponibles para independientes o freelancers?",
+      "topic": "productos_digitales",
+      "expected_keywords": ["independientes", "freelancers", "cuenta", "crédito"],
+      "difficulty": "medium",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/banco-para-todos/independientes"
+      ]
+    },
+    {
+      "id": 20,
+      "question": "¿Cómo funcionan los corresponsales bancarios de Bancolombia?",
+      "topic": "canales_servicio",
+      "expected_keywords": ["corresponsal", "bancario", "punto", "servicio"],
+      "difficulty": "easy",
+      "expected_sources": [
+        "https://www.bancolombia.com/personas/productos-servicios/canales-servicio/fisico/corresponsal-bancario"
+      ]
+    }
+  ],
+  "usage_notes": {
+    "purpose": "Evaluar calidad de retrieval y respuestas del sistema RAG",
+    "metrics_to_measure": [
+      "Precisión de retrieval (¿se recuperan los chunks correctos?)",
+      "Recall (¿se recupera toda la información necesaria?)",
+      "Relevancia de la respuesta generada",
+      "Citación correcta de fuentes"
+    ],
+    "how_to_use": "Ejecuta cada pregunta contra el sistema RAG y compara las fuentes retornadas con expected_sources. Verifica que expected_keywords aparezcan en los chunks recuperados."
+  }
+}

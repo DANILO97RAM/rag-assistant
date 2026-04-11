@@ -1,0 +1,176 @@
+{
+  "info": {
+    "name": "Bancolombia Knowledge API",
+    "description": "Colección de requests para probar la API REST de Bancolombia Knowledge Base",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": [""]
+        },
+        "description": "Verifica que el servidor esté operativo"
+      },
+      "response": []
+    },
+    {
+      "name": "Search - Seguros",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"¿Qué seguros ofrece Bancolombia?\",\n  \"n_results\": 3\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/search",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"]
+        },
+        "description": "Búsqueda semántica sobre seguros"
+      },
+      "response": []
+    },
+    {
+      "name": "Search - Consumidor Financiero",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"¿Qué es el consumidor financiero?\",\n  \"n_results\": 5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/search",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"]
+        },
+        "description": "Búsqueda sobre consumidor financiero"
+      },
+      "response": []
+    },
+    {
+      "name": "Search - Con Filtro Categoría",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"información sobre seguros\",\n  \"n_results\": 3,\n  \"category\": \"seguros\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/search",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"]
+        },
+        "description": "Búsqueda filtrada por categoría 'seguros'"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Article by URL - Créditos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/article?url=https://www.bancolombia.com/personas/creditos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["article"],
+          "query": [
+            {
+              "key": "url",
+              "value": "https://www.bancolombia.com/personas/creditos"
+            }
+          ]
+        },
+        "description": "Recupera todos los chunks del artículo de créditos"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Article by URL - Seguros",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/article?url=https://www.bancolombia.com/personas/seguros",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["article"],
+          "query": [
+            {
+              "key": "url",
+              "value": "https://www.bancolombia.com/personas/seguros"
+            }
+          ]
+        },
+        "description": "Recupera todos los chunks del artículo de seguros"
+      },
+      "response": []
+    },
+    {
+      "name": "List Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["categories"]
+        },
+        "description": "Lista todas las categorías disponibles (47 total)"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Stats",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/stats",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["stats"]
+        },
+        "description": "Obtiene estadísticas de la base de conocimiento"
+      },
+      "response": []
+    }
+  ]
+}
