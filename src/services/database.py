@@ -2,10 +2,14 @@
 Servicio de base de datos vectorial usando ChromaDB.
 
 Proporciona funcionalidades para:
-- Almacenamiento persistente de embeddings
+- Almacenamiento persistente de embeddings (mediante ChromaDB Server)
 - Búsqueda semántica por similitud coseno
 - Filtrado por metadatos (URL, categoría)
 - Estadísticas de la base de conocimiento
+
+Soporta dos modos:
+1. **HTTP Client**: Conexión a ChromaDB Docker (producción/desarrollo)
+2. **Persistent Client**: ChromaDB local embebido (testing, legacy)
 
 ChromaDB es una base de datos vectorial open-source optimizada para
 aplicaciones de IA y retrieval semántico.
@@ -14,6 +18,7 @@ aplicaciones de IA y retrieval semántico.
 import hashlib
 import json
 import logging
+import os
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime
@@ -21,6 +26,10 @@ from datetime import datetime
 import pandas as pd
 import chromadb
 from chromadb.config import Settings
+from dotenv import load_dotenv
+
+# Cargar variables de entorno
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -29,31 +38,66 @@ class ChromaDBService:
     """Servicio de base de datos vectorial con ChromaDB.
     
     Características:
-    - Persistencia local en data/chroma_db/
+    - Conexión HTTP a ChromaDB Server (Docker)
     - Distancia coseno para búsqueda semántica
     - Metadatos: url, title, category, fecha_extraccion, chunk_index, etc.
     - IDs determinísticos con SHA256
     """
     
-    def __init__(self, persist_directory: str = "data/chroma_db"):
+    def __init__(
+        self,
+        host: Optional[str] = None,
+        port: Optional[int] = None,
+        use_local: bool = False,
+        persist_directory: str = "data/chroma_db"
+    ):
         """Inicializa el servicio de ChromaDB.
         
         Args:
-            persist_directory: Directorio para persistencia local
+            host: Host del servidor ChromaDB (default: localhost, de .env)
+            port: Puerto del servidor ChromaDB (default: 8000, de .env)
+            use_local: Si True, usa PersistentClient local (testing)
+            persist_directory: Directorio para modo local
         """
-        self.persist_directory = Path(persist_directory)
-        self.persist_directory.mkdir(parents=True, exist_ok=True)
+        # Configuración desde variables de entorno
+        self.host = host or os.getenv("CHROMA_HOST", "localhost")
+        self.port = port or int(os.getenv("CHROMA_PORT", "8000"))
+        self.use_local = use_local
         
-        logger.info(f"📦 Inicializando ChromaDB en {self.persist_directory}")
-        
-        # Crear cliente persistente
-        self.client = chromadb.PersistentClient(
-            path=str(self.persist_directory),
-            settings=Settings(
-                anonymized_telemetry=False,
-                allow_reset=True
+        if self.use_local:
+            # Modo local (testing/desarrollo sin Docker)
+            self.persist_directory = Path(persist_directory)
+            self.persist_directory.mkdir(parents=True, exist_ok=True)
+            
+            logger.info(f"📦 [LOCAL] ChromaDB en {self.persist_directory}")
+            
+            self.client = chromadb.PersistentClient(
+                path=str(self.persist_directory),
+                settings=Settings(
+                    anonymized_telemetry=False,
+                    allow_reset=True
+                )
             )
-        )
+        else:
+            # Modo HTTP (producción con Docker)
+            logger.info(f"🌐 [HTTP] Conectando a ChromaDB en {self.host}:{self.port}")
+            
+            try:
+                self.client = chromadb.HttpClient(
+                    host=self.host,
+                    port=self.port,
+                    settings=Settings(
+                        anonymized_telemetry=False,
+                        allow_reset=True
+                    )
+                )
+                # Test de conexión
+                self.client.heartbeat()
+                logger.info(f"✅ Conexión exitosa a ChromaDB Server")
+            except Exception as e:
+                logger.error(f"❌ Error conectando a ChromaDB: {e}")
+                logger.error(f"   Verifica que Docker esté ejecutándose: docker-compose up -d")
+                raise
         
         self.collection_name = "bancolombia_knowledge"
         self.collection = None
@@ -310,20 +354,30 @@ class ChromaDBService:
 
 
 # Función auxiliar para uso directo
-def get_database(persist_directory: str = "data/chroma_db") -> ChromaDBService:
+def get_database(
+    host: Optional[str] = None,
+    port: Optional[int] = None,
+    use_local: bool = False
+) -> ChromaDBService:
     """Helper para obtener instancia de ChromaDBService.
     
     Args:
-        persist_directory: Directorio de persistencia
+        host: Host de ChromaDB (None = usar .env)
+        port: Puerto de ChromaDB (None = usar .env)
+        use_local: Si True, usa PersistentClient local
     
     Returns:
         Instancia de ChromaDBService
     """
-    return ChromaDBService(persist_directory=persist_directory)
+    return ChromaDBService(host=host, port=port, use_local=use_local)
 
 
 if __name__ == "__main__":
-    # Test básico
-    db = ChromaDBService()
+    # Test básico de conexión
+    print("🧪 Testing ChromaDBService...")
+    db = ChromaDBService()  # Usa variables de entorno (.env)
     db.create_collection()
-    print(f"✅ ChromaDBService funcionando. Stats: {db.get_stats()}")
+    stats = db.get_stats()
+    print(f"✅ ChromaDBService funcionando")
+    print(f"   Documentos: {stats['total_documents']}")
+    print(f"   Categorías: {stats['num_categories']}")

@@ -5,6 +5,9 @@ API REST - Bancolombia Knowledge Base
 Servidor HTTP para testing con Postman/Insomnia.
 Expone las mismas funcionalidades que el servidor MCP pero vía REST.
 
+**IMPORTANTE**: Este servidor se conecta a ChromaDB Docker (puerto 8000)
+Ejecutar antes: docker-compose up -d
+
 Endpoints:
 - POST /search - Búsqueda semántica
 - GET /article - Obtener artículo por URL
@@ -13,10 +16,15 @@ Endpoints:
 """
 
 import sys
+import os
 from pathlib import Path
 from typing import List, Optional
 import logging
 import uvicorn
+from dotenv import load_dotenv
+
+# Cargar variables de entorno
+load_dotenv()
 
 # Agregar src al path
 project_root = Path(__file__).parent.parent
@@ -34,7 +42,7 @@ logger = logging.getLogger(__name__)
 # Inicializar FastAPI
 app = FastAPI(
     title="Bancolombia Knowledge API",
-    description="API REST para consultar la base de conocimiento de Bancolombia",
+    description="API REST para consultar la base de conocimiento de Bancolombia (ChromaDB Docker)",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
@@ -49,16 +57,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Inicializar ChromaDB
-CHROMA_PATH = str(project_root / "data" / "chroma_db")
-logger.info(f"🔌 Conectando a ChromaDB en {CHROMA_PATH}")
+# ============================================================================
+# INICIALIZAR CHROMADB (Conexión HTTP a Docker)
+# ============================================================================
+
+logger.info("🔌 Conectando a ChromaDB Server (Docker)...")
 
 try:
-    db = ChromaDBService(persist_directory=CHROMA_PATH)
+    # Conectar a ChromaDB via HTTP (usa variables de entorno .env)
+    db = ChromaDBService()  # HttpClient por default
     db.create_collection()
-    logger.info("✅ ChromaDB conectado exitosamente")
+    stats = db.get_stats()
+    logger.info(f"✅ ChromaDB conectado: {stats['total_documents']} documentos")
 except Exception as e:
     logger.error(f"❌ Error conectando a ChromaDB: {e}")
+    logger.error("   Verifica que Docker esté ejecutándose: docker-compose up -d")
     raise
 
 
@@ -304,6 +317,34 @@ async def get_stats():
     except Exception as e:
         logger.error(f"❌ Error obteniendo estadísticas: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================================
+# INICIAR SERVIDOR
+# ============================================================================
+
+if __name__ == "__main__":
+    print("="  * 60)
+    print("🚀 Iniciando Bancolombia API REST")
+    print("=" * 60)
+    print(f"📦 Versión: 1.0.0")
+    print(f"📖 Documentación: http://localhost:9000/docs")
+    print(f"🌐 ChromaDB: {os.getenv('CHROMA_HOST', 'localhost')}:{os.getenv('CHROMA_PORT', '8000')}")
+    print("=" * 60)
+    print()
+    
+    # Obtener configuración desde variables de entorno
+    api_port = int(os.getenv("API_PORT", "9000"))
+    api_host = os.getenv("API_HOST", "0.0.0.0")
+    
+    uvicorn.run(
+        app,
+        host=api_host,
+        port=api_port,
+        log_level="info"
+    )
+# Commented by GitHub Copilot
+
 
 
 # ============================================================================
