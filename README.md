@@ -564,7 +564,121 @@ response = json.loads(process.stdout.readline())
 Ver documentación completa: [mcp/README.md](mcp/README.md)
 
 ---
+## 🌐 API REST (Testing con Postman/Insomnia)
 
+Para facilitar el testing y desarrollo, se incluye una **API REST** que expone la misma funcionalidad del servidor MCP mediante endpoints HTTP.
+
+### Características
+
+- ✅ **Framework**: FastAPI con Uvicorn
+- ✅ **Puerto**: 8000 (configurable)
+- ✅ **Documentación**: Swagger UI automática
+- ✅ **CORS**: Habilitado para desarrollo
+- ✅ **Validación**: Pydantic models
+- ✅ **Estado**: ✅ Validado con Postman
+
+### Inicio Rápido
+
+```bash
+# Instalar dependencias
+pip install fastapi uvicorn
+# O con Makefile
+make api_install
+
+# Iniciar servidor
+cd mcp
+python api_server.py
+# O con Makefile
+make api_server
+```
+
+**Output esperado:**
+```
+🚀 Iniciando Bancolombia API REST
+📦 Versión: 1.0.0
+✅ Base lista: 94 documentos
+INFO: Uvicorn running on http://0.0.0.0:8000
+```
+
+### Endpoints Disponibles
+
+| Endpoint | Método | Descripción | Status |
+|----------|--------|-------------|--------|
+| `/` | GET | Health check | ✅ Probado |
+| `/search` | POST | Búsqueda semántica | ✅ Probado |
+| `/article` | GET | Obtener artículo por URL | ✅ Probado |
+| `/categories` | GET | Listar categorías | ✅ Probado |
+| `/stats` | GET | Estadísticas | ✅ Probado |
+| `/docs` | GET | Swagger UI | ✅ Disponible |
+
+### Testing con Postman
+
+1. **Importar colección:**
+   - Abrir Postman
+   - Click en **Import**
+   - Seleccionar: `mcp/Bancolombia_API.postman_collection.json`
+
+2. **Ejecutar requests:**
+   - La colección incluye 8 requests de ejemplo
+   - Health check, búsquedas, artículos, categorías, stats
+
+3. **Swagger UI (alternativa):**
+   - Abrir navegador: `http://localhost:8000/docs`
+   - Probar endpoints directamente desde la interfaz
+
+### Ejemplo: Búsqueda Semántica
+
+**Request:**
+```bash
+POST http://localhost:8000/search
+Content-Type: application/json
+
+{
+  "query": "¿Qué seguros ofrece Bancolombia?",
+  "n_results": 3,
+  "category": "seguros"  // opcional
+}
+```
+
+**Response:**
+```json
+{
+  "query": "¿Qué seguros ofrece Bancolombia?",
+  "total_results": 3,
+  "documents": [
+    {
+      "rank": 1,
+      "similarity_score": 0.638,
+      "title": "Seguros Bancolombia",
+      "url": "https://www.bancolombia.com/personas/seguros",
+      "content": "Seguros Bancolombia Protege tu salud...",
+      "category": "seguros",
+      "word_count": 738
+    }
+  ]
+}
+```
+
+### Diferencias MCP vs REST API
+
+| Característica | Servidor MCP | API REST |
+|----------------|--------------|----------|
+| **Transporte** | stdio (stdin/stdout) | HTTP |
+| **Puerto** | N/A | 8000 |
+| **Cliente** | Agentes MCP (Claude, GPT) | Postman, navegador, curl |
+| **Protocolo** | JSON-RPC 2.0 | REST |
+| **Documentación** | MCP spec | Swagger UI |
+| **Uso principal** | Agentes conversacionales | Testing, debugging, desarrollo |
+
+**Nota:** Ambos servidores usan la **misma base de datos ChromaDB** y exponen la misma funcionalidad.
+
+### Documentación Completa
+
+- **Guía rápida:** [CURL_QUICK_START.md](CURL_QUICK_START.md)
+- **API REST completa:** [mcp/API_REST_README.md](mcp/API_REST_README.md)
+- **Colección Postman:** [mcp/Bancolombia_API.postman_collection.json](mcp/Bancolombia_API.postman_collection.json)
+
+---
 ## �📊 Limitaciones y Recomendaciones
 
 ### Limitaciones Actuales
