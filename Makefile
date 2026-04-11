@@ -34,6 +34,67 @@ docker-status:
 docker-clean:
 	docker compose down -v
 	rm -rf n8n_data/ || true
+
+# ============================================================================
+# n8n + MCP Setup
+# ============================================================================
+
+# Instalar dependencias Python en contenedor n8n
+n8n-setup:
+	@echo "🔧 Instalando dependencias Python en n8n..."
+	@docker exec n8n apk add --no-cache python3 py3-pip || true
+	@docker exec n8n pip3 install --break-system-packages chromadb==0.5.7 sentence-transformers==3.0.0 fastmcp==0.2.1 python-dotenv==1.0.0 pandas numpy
+	@echo "✅ Dependencias instaladas en n8n"
+	@echo "📝 Configura MCP Client en n8n:"
+	@echo "   Transport: Standard I/O"
+	@echo "   Command: python3"
+	@echo "   Args: /workspace/mcp/main.py"
+
+# Test rápido del MCP desde n8n
+n8n-test-mcp:
+	@echo "🧪 Probando MCP server desde n8n..."
+	@docker exec n8n python3 /workspace/mcp/main.py --help || echo "MCP ejecutable en n8n"
+
+# Ver logs de n8n
+n8n-logs:
+	docker logs n8n -f --tail 100
+
+# ============================================================================
+# ChromaDB Backup & Restore
+# ============================================================================
+
+# Crear backup de ChromaDB
+backup:
+	@echo "📦 Creando backup de ChromaDB..."
+	@mkdir -p backups
+	@tar -czf backups/chromadb_$$(date +%Y%m%d_%H%M%S).tar.gz chroma_data/
+	@echo "✅ Backup creado en backups/"
+	@ls -lh backups/ | tail -1
+
+# Restaurar último backup
+restore:
+	@echo "📂 Restaurando último backup..."
+	@LATEST=$$(ls -t backups/chromadb_*.tar.gz 2>/dev/null | head -1); \
+	if [ -z "$$LATEST" ]; then \
+		echo "❌ No se encontraron backups"; \
+		exit 1; \
+	fi; \
+	echo "Restaurando: $$LATEST"; \
+	rm -rf chroma_data/; \
+	tar -xzf $$LATEST; \
+	echo "✅ Backup restaurado"
+
+# Verificar estado de ChromaDB
+chroma-check:
+	@echo "🔍 Verificando ChromaDB..."
+	@docker ps | grep chromadb || echo "❌ ChromaDB no está corriendo"
+	@curl -s http://localhost:9000/stats | python3 -m json.tool || echo "❌ Error conectando a API"
+	@ls -lh chroma_data/ 2>/dev/null || echo "⚠️  No existe directorio chroma_data/"
+
+# Diagnóstico completo del sistema
+diagnose:
+	@chmod +x diagnose.sh
+	@./diagnose.sh
 	@echo "🚀 Ejecutando pipeline completo..."
 	./venv/bin/python src/main.py --depth 2 --max-pages 50 --concurrency 10 --force-scrape
 	@echo "🔢 Generando embeddings..."

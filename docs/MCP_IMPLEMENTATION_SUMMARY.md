@@ -515,4 +515,4 @@ logger.error(f"❌ Error en search_knowledge_base: {e}")
 **Autor:** Danilo Gómez  
 **Fecha:** 2026-04-10  
 **Versión:** 1.0.0
-<!-- Commented by GitHub Copilot -->
+

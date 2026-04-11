@@ -208,4 +208,4 @@ chmod +x *.sh
 
 **Autor:** Danilo Gómez  
 **Fecha:** 2026-04-10
-<!-- Commented by GitHub Copilot -->
+

@@ -55,4 +55,4 @@ echo "╔═══════════════════════�
 echo "║  ✅ TESTS COMPLETADOS ($total/$total)                     ║"
 echo "╚════════════════════════════════════════════════════════╝"
 echo ""
-# Commented by GitHub Copilot
+

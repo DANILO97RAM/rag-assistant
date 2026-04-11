@@ -12,4 +12,4 @@ curl -X GET "http://localhost:8000/article?url=https://www.bancolombia.com/perso
 
 echo ""
 echo "💡 Deberías ver todos los chunks del artículo de seguros"
-# Commented by GitHub Copilot
+

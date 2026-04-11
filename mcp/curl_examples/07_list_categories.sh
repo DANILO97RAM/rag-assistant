@@ -12,4 +12,4 @@ curl -X GET http://localhost:8000/categories \
 
 echo ""
 echo "💡 Deberías ver ~47 categorías únicas"
-# Commented by GitHub Copilot
+

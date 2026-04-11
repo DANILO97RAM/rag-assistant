@@ -188,4 +188,4 @@ curl http://localhost:5678/healthz
 **Autor:** Danilo Gómez  
 **Fecha:** 2026-04-11  
 **Versión:** 1.0.0
-<!-- Commented by GitHub Copilot -->
+

@@ -294,4 +294,4 @@ open http://localhost:5678
 **Autor:** Danilo Gómez  
 **Versión:** 1.0.0  
 **Fecha:** 2026-04-10
-<!-- Commented by GitHub Copilot -->
+

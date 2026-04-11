@@ -414,4 +414,4 @@ El servidor genera logs informativos en stderr:
 **Autor:** Danilo Gómez  
 **Versión:** 1.0.0  
 **Fecha:** 2026-04-10
-<!-- Commented by GitHub Copilot -->
+

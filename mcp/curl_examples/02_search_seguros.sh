@@ -17,4 +17,4 @@ curl -X POST http://localhost:8000/search \
 
 echo ""
 echo "💡 Deberías ver 3 documentos relacionados con seguros"
-# Commented by GitHub Copilot
+

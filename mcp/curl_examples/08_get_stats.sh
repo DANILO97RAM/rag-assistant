@@ -12,4 +12,4 @@ curl -X GET http://localhost:8000/stats \
 
 echo ""
 echo "💡 Deberías ver 94 documentos, 47 categorías, dimensión 384"
-# Commented by GitHub Copilot
+

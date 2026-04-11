@@ -18,4 +18,4 @@ curl -X POST http://localhost:8000/search \
 
 echo ""
 echo "💡 Todos los resultados deberían tener category='seguros'"
-# Commented by GitHub Copilot
+

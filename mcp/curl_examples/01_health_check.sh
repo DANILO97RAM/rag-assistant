@@ -12,4 +12,4 @@ curl -X GET http://localhost:8000/ \
 
 echo ""
 echo "💡 Si ves 'operational', el servidor está funcionando correctamente"
-# Commented by GitHub Copilot
+

@@ -393,4 +393,4 @@ docker ps | grep chromadb
 **Autor:** Danilo Gómez  
 **Versión:** 1.0.0  
 **Fecha:** 2026-04-11
-<!-- Commented by GitHub Copilot -->
+

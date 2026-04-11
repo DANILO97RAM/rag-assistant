@@ -22,6 +22,7 @@ services:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
+      - .:/workspace  # Montar código del proyecto para MCP
     environment:
       - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
@@ -30,9 +31,14 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
       - WEBHOOK_URL=http://localhost:5678/
+      - PYTHONPATH=/workspace/src  # Path para imports Python
+      - CHROMA_HOST=chromadb  # Hostname del contenedor ChromaDB
+      - CHROMA_PORT=8000
     restart: unless-stopped
     networks:
       - rag-network
+    depends_on:
+      - chromadb
 
 networks:
   rag-network:

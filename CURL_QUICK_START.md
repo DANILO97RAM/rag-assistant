@@ -285,4 +285,4 @@ Una vez que hayas probado todos los endpoints con cURL y funcionen correctamente
 
 **Creado:** 2026-04-10  
 **Autor:** Danilo Gómez
-<!-- Commented by GitHub Copilot -->
+

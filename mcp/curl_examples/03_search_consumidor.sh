@@ -17,4 +17,4 @@ curl -X POST http://localhost:8000/search \
 
 echo ""
 echo "💡 Deberías ver documentos sobre derechos del consumidor"
-# Commented by GitHub Copilot
+
