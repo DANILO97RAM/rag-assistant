@@ -1,0 +1,537 @@
+@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2
+Error: EACCES: permission denied, open '/home/node/.n8n/config'
+    at writeFileSync (node:fs:2412:20)
+    at InstanceSettings.save (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:255:16)
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:232:8)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file+packages+core_@opentelemetry+api@1.9.0_@opentelemetry+exporter-trace-otlp_2d19a9be2839cb42cd2e8c9cacd05d5a/node_modules/n8n-core/src/instance-settings/instance-settings.ts:73:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:104:16)
+    at CommunityPackagesModule.loadDir (/usr/local/lib/node_modules/n8n/src/modules/community-packages/community-packages.module.ts:41:30)
+    at ModuleRegistry.loadModules (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-common@file+packages+@n8n+backend-common/node_modules/@n8n/backend-common/src/modules/module-registry.ts:109:20)
+    at CommandRegistry.execute (/usr/local/lib/node_modules/n8n/src/command-registry.ts:46:3)
+    at /usr/local/lib/node_modules/n8n/bin/n8n:63:2

@@ -763,6 +763,6 @@ Este proyecto es parte de una prueba técnica y está destinado únicamente para
 ## 🙏 Agradecimientos
 
 - Bancolombia por el contenido público
-- LangChain por el framework RAG
-- Sentence Transformers por los modelos de embeddings
+- LangChain por el framework RAG <3
+- Sentence Transformers por los modelos de embeddings, craks, idolos, mastodontes, genios, dioses, semidioses, leyendas, mitos, bestias mitológicas, unicornios, dragones, fénix, quimeras, grifos, sirenas, centauros, minotauros, esfinges, cíclopes, gorgonas, harpías, sátiros, ninfas y demás criaturas fantásticas que hacen posible la magia de los embeddings.
 - ChromaDB por la base de datos vectorial

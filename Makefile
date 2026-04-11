@@ -13,6 +13,34 @@ main:
 
 main-force:
 	./venv/bin/python src/main.py --depth 2 --max-pages 50 --concurrency 10 --force-scrape
+
+# Comando completo: scraping + embeddings + ChromaDB indexación
+full-pipeline:
+
+# Reiniciar servicios Docker (útil después de cambios en docker-compose.yaml)
+docker-restart:
+	docker compose down
+	docker compose up -d
+
+# Ver logs de servicios Docker
+docker-logs:
+	docker compose logs -f
+
+# Ver estado de servicios Docker
+docker-status:
+	docker ps --filter "name=chromadb" --filter "name=n8n"
+
+# Detener y limpiar TODO (incluyendo volúmenes)
+docker-clean:
+	docker compose down -v
+	rm -rf n8n_data/ || true
+	@echo "🚀 Ejecutando pipeline completo..."
+	./venv/bin/python src/main.py --depth 2 --max-pages 50 --concurrency 10 --force-scrape
+	@echo "🔢 Generando embeddings..."
+	./venv/bin/python tests/generate_embeddings.py --provider sentence-transformers
+	@echo "📊 Indexando en ChromaDB..."
+	./venv/bin/python src/main.py --index-chromadb --reset-chromadb
+	@echo "✅ Pipeline completo finalizado"
 	
 docker-up:
 	docker compose up -d

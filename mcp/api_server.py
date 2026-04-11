@@ -343,31 +343,3 @@ if __name__ == "__main__":
         port=api_port,
         log_level="info"
     )
-# Commented by GitHub Copilot
-
-
-
-# ============================================================================
-# PUNTO DE ENTRADA
-# ============================================================================
-
-if __name__ == "__main__":
-    logger.info("🚀 Iniciando Bancolombia API REST")
-    logger.info(f"📦 Versión: 1.0.0")
-    logger.info(f"📂 ChromaDB path: {CHROMA_PATH}")
-    
-    # Validar datos
-    stats = db.get_stats()
-    if stats['total_documents'] == 0:
-        logger.warning("⚠️  Base de conocimiento vacía")
-    else:
-        logger.info(f"✅ Base lista: {stats['total_documents']} documentos")
-    
-    # Iniciar servidor
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=8000,
-        log_level="info"
-    )
-# Commented by GitHub Copilot
