@@ -52,10 +52,7 @@ except Exception as e:
     logger.error(f"❌ Error conectando a ChromaDB: {e}")
     raise
 
-
-# ============================================================================
-# TOOLS - Herramientas obligatorias según requisitos de prueba técnica
-# ============================================================================
+# TOOLS
 
 @mcp.tool()
 def search_knowledge_base(
@@ -218,10 +215,7 @@ def list_categories() -> Dict[str, Any]:
             "message": str(e)
         }
 
-
-# ============================================================================
 # RESOURCE - Estadísticas de la base de conocimiento
-# ============================================================================
 
 @mcp.resource("knowledge-base://stats")
 def get_kb_stats() -> str:
@@ -258,16 +252,21 @@ Categorías disponibles:
         logger.error(f"❌ Error obteniendo estadísticas: {e}")
         return f"Error: {str(e)}"
 
+@mcp.tool()
+def get_knowledge_base_stats() -> str:
+    """
+    Obtiene estadísticas actuales de la base de conocimiento.
+    """
+    return get_kb_stats()
 
-# ============================================================================
-# PUNTO DE ENTRADA - Transporte stdio (obligatorio)
-# ============================================================================
+
+# PUNTO DE ENTRADA - Transporte stdio
 
 if __name__ == "__main__":
     logger.info("🚀 Iniciando Bancolombia MCP Server")
     logger.info(f"📦 Versión: 1.0.0")
     logger.info(f"🔌 Transporte: stdio")
-    logger.info(f"📂 ChromaDB path: {CHROMA_PATH}")
+    logger.info(f"🌐 ChromaDB Server: {CHROMA_HOST}:{CHROMA_PORT}")
     
     # Validar que ChromaDB tiene datos
     stats = db.get_stats()
@@ -277,4 +276,7 @@ if __name__ == "__main__":
         logger.info(f"✅ Base de conocimiento lista: {stats['total_documents']} documentos")
     
     # Iniciar servidor MCP con transporte stdio
-    mcp.run(transport="stdio")
+    # mcp.run(transport="stdio")
+    # Se puede cambiar a http para exponerlo localmente en un puerto específico, por ejemplo:
+    mcp.run(transport="http", host="0.0.0.0", port=9000)
+

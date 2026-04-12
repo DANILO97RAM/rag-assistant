@@ -64,3 +64,6 @@ models/
 chroma_data/
 n8n_data/
 .env
+
+# Documentación local 
+docs/

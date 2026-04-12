@@ -20,6 +20,8 @@ services:
     user: "1000:1000"
     ports:
       - "5678:5678"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - n8n_data:/home/node/.n8n
       - .:/workspace  # Montar código del proyecto para MCP

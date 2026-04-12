@@ -324,18 +324,18 @@ async def get_stats():
 # ============================================================================
 
 if __name__ == "__main__":
+    # Obtener configuración desde variables de entorno
+    api_port = int(os.getenv("API_PORT", "8001"))  # (ChromaDB usa 8000)
+    api_host = os.getenv("API_HOST", "0.0.0.0")
+    
     print("="  * 60)
     print("🚀 Iniciando Bancolombia API REST")
     print("=" * 60)
     print(f"📦 Versión: 1.0.0")
-    print(f"📖 Documentación: http://localhost:9000/docs")
+    print(f"📖 Documentación: http://localhost:{api_port}/docs")
     print(f"🌐 ChromaDB: {os.getenv('CHROMA_HOST', 'localhost')}:{os.getenv('CHROMA_PORT', '8000')}")
     print("=" * 60)
     print()
-    
-    # Obtener configuración desde variables de entorno
-    api_port = int(os.getenv("API_PORT", "9000"))
-    api_host = os.getenv("API_HOST", "0.0.0.0")
     
     uvicorn.run(
         app,
