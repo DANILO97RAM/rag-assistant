@@ -12,8 +12,6 @@ from config.logger import setup_logging
 from core.scrapper import run_scrapping
 from core.cleaner import TextCleaner
 from core.chunker import Chunker
-# from core.embedder import create_embedder
-# from services.database import load_knowledge_base
 
 SCRAPING_URL = "https://www.bancolombia.com/personas"
 SCRAPING_DEPTH = 2

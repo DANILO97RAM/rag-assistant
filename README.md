@@ -84,10 +84,9 @@ rag-assistant/
 │   │   └── processor.py             # Orquestador limpieza + chunking
 │   ├── services/
 │   │   ├── database.py              # ChromaDB service
-│   │   └── mcp_server.py            # FastMCP server (TODO)
 │   └── main.py                      # CLI principal
 ├── tests/
-│   ├── test_chromadb.py             # Tests unitarios ChromaDB
+│   ├── test_chromadb.py                    # Tests unitarios ChromaDB
 │   └── test_chromadb_realistic_queries.py  # Validación con queries
 ├── scripts/
 │   └── analyze_content.py           # Análisis de contenido scrapeado
@@ -97,10 +96,7 @@ rag-assistant/
 │   ├── embeddings_sentence-transformers.parquet  # 94 vectores 384D
 │   └── chroma_db/                   # Base de datos ChromaDB
 ├── docs/
-│   ├── prueba-tecnica.md            # Especificación del proyecto
-│   ├── scraping_report.md           # Reporte de scraping
-│   ├── CHROMADB_PLAN.md             # Plan de implementación ChromaDB
-│   └── CHROMADB_VALIDATION_REPORT.md # Reporte de validación completo
+│   └── prueba-tecnica.md            # Reporte de validación completo
 ├── requirements.txt                 # Dependencias Python
 └── Makefile                         # Comandos de automatización
 ```
@@ -115,7 +111,7 @@ rag-assistant/
 URL_BASE = "https://www.bancolombia.com/personas"
 PROFUNDIDAD = 2
 MAX_PÁGINAS = 50
-CONCURRENCIA = 8
+CONCURRENCIA = 10
 ```
 
 **Técnica:** Crawling BFS (Breadth-First Search)
@@ -192,10 +188,9 @@ COLLECTION_NAME = "bancolombia_knowledge"
 ## 🚀 Instalación y Uso
 
 ### Prerrequisitos
-
+- Ububtu 20.04+ / Windows 10+ Con WSL
 - Python 3.11+ (recomendado 3.12.3)
-- pip o conda
-- 2GB RAM mínimo
+- 3GB RAM mínimo
 - 500MB espacio en disco
 
 ### Instalación
@@ -205,68 +200,26 @@ COLLECTION_NAME = "bancolombia_knowledge"
 git clone https://github.com/DANILO97RAM/rag-assistant.git
 cd rag-assistant
 
-# Crear entorno virtual
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# o
-.\venv\Scripts\activate  # Windows
-
 # Instalar dependencias
-pip install -r requirements.txt
+make setup
 
-# Instalar Playwright browsers
-playwright install chromium
+# Activar  entorno virtual
+source venv/bin/activate 
 ```
-
-### Comandos Makefile
+### Flujo de Ejecución
 
 ```bash
-# Ver todos los comandos
-make help
+# Ejecutar pipeline completo (scraping + limpieza + chunking + embeddings + indexación), usando hugging face de forma local
+make etl 
+# Tambien se puede gener la etl con gemini, no ejecutar ambas al mismo tiempo porque pueden generar conflictos con los recursos de la máquina
+# Definir variable de entorno GEMINI_API_KEY con la API key de Gemini antes de ejecutar la etl con gemini
+export GEMINI_API_KEY=XXXXAPIXXXX
+make etl-gemini
 
-# Ejecutar pipeline completo (scraping + limpieza + chunking)
-make run
-
-# Solo scraping (50 páginas)
-make scraper
-
-# Generar embeddings
-make embeddings
-
-# Indexar en ChromaDB
-make db_index
-
-# Resetear ChromaDB y re-indexar
-make db_reset
-
-# Ejecutar tests
-make test
-
-# Validación con queries realistas
-make db_queries_test
-
-# Análisis de contenido
-make analyze_content
+# Levantar el servidor MCP para exponer la base de conocimiento de forma local
+make mcp_up
 ```
 
-### Uso Manual
-
-```bash
-# Pipeline completo
-python src/main.py
-
-# Scraping forzado (ignorar caché)
-python src/main.py --force-scrape
-
-# Indexar en ChromaDB
-python src/main.py --index-chromadb
-
-# Resetear ChromaDB
-python src/main.py --index-chromadb --reset-chromadb
-
-# Solo cargar chunks (sin scraping)
-python -c "from src.main import load_chunks_from_disk; load_chunks_from_disk()"
-```
 
 ---
 
@@ -763,6 +716,6 @@ Este proyecto es parte de una prueba técnica y está destinado únicamente para
 ## 🙏 Agradecimientos
 
 - Bancolombia por el contenido público
-- LangChain por el framework RAG
-- Sentence Transformers por los modelos de embeddings
+- LangChain por el framework RAG <3
+- Sentence Transformers por los modelos de embeddings, craks, idolos, mastodontes, genios, dioses, semidioses, leyendas, mitos, bestias mitológicas, unicornios, dragones, fénix, quimeras, grifos, sirenas, centauros, minotauros, esfinges, cíclopes, gorgonas, harpías, sátiros, ninfas y demás criaturas fantásticas que hacen posible la magia de los embeddings.
 - ChromaDB por la base de datos vectorial

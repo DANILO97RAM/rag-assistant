@@ -11,7 +11,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:9000/",
+          "raw": "http://localhost:8000/",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",
@@ -36,7 +36,7 @@
           "raw": "{\n  \"query\": \"¿Qué seguros ofrece Bancolombia?\",\n  \"n_results\": 3\n}"
         },
         "url": {
-          "raw": "http://localhost:9000/search",
+          "raw": "http://localhost:8000/search",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",
@@ -61,7 +61,7 @@
           "raw": "{\n  \"query\": \"¿Qué es el consumidor financiero?\",\n  \"n_results\": 5\n}"
         },
         "url": {
-          "raw": "http://localhost:9000/search",
+          "raw": "http://localhost:8000/search",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",
@@ -86,7 +86,7 @@
           "raw": "{\n  \"query\": \"información sobre seguros\",\n  \"n_results\": 3,\n  \"category\": \"seguros\"\n}"
         },
         "url": {
-          "raw": "http://localhost:9000/search",
+          "raw": "http://localhost:8000/search",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",
@@ -102,7 +102,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:9000/article?url=https://www.bancolombia.com/personas/creditos",
+          "raw": "http://localhost:8000/article?url=https://www.bancolombia.com/personas/creditos",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",
@@ -124,7 +124,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:9000/article?url=https://www.bancolombia.com/personas/seguros",
+          "raw": "http://localhost:8000/article?url=https://www.bancolombia.com/personas/seguros",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",
@@ -146,7 +146,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:9000/categories",
+          "raw": "http://localhost:8000/categories",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",
@@ -162,7 +162,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:9000/stats",
+          "raw": "http://localhost:8000/stats",
           "protocol": "http",
           "host": ["localhost"],
           "port": "8000",

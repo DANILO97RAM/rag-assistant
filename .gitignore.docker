@@ -1,0 +1,5 @@
+# Variables de entorno locales (no commitear)
+.env
+
+# Datos de ChromaDB Docker
+chroma_data/
