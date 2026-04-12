@@ -1,6 +1,12 @@
 # 🏦 Frontend Streamlit - Asistente Virtual Bancolombia
 
-Interfaz de chat para consultar la base de conocimiento de Bancolombia mediante la API REST.
+Interfaz de chat para consultar la base de conocimiento de Bancolombia mediante la API REST. 
+
+**Consume las 3 tools y 1 resource del servidor MCP:**
+- Tool: `search_knowledge_base` (búsqueda semántica)
+- Tool: `get_article_by_url` (consulta por URL)
+- Tool: `list_categories` (listar categorías)
+- Resource: `knowledge-base://stats` (estadísticas)
 
 ---
 
@@ -39,38 +45,58 @@ El frontend se abrirá en: **http://localhost:8501**
 
 ## ✨ Características
 
-### Chat Interactivo
-- ✅ Input de texto para preguntas en lenguaje natural
-- ✅ Historial de conversación completo
-- ✅ Indicador de carga "Buscando información..."
+### 4 Modos de Consulta
 
-### Configuración
-- ✅ Selector de número de resultados (3, 5, 7)
-- ✅ Botón "Limpiar historial"
+El frontend expone los 4 endpoints de la API REST (que a su vez consumen las tools y resources del servidor MCP):
 
-### Resultados de Búsqueda
-- ✅ Título del documento
-- ✅ Score de similitud (0.0 - 1.0)
-- ✅ Categoría
-- ✅ Preview del contenido (primeros 300 caracteres)
-- ✅ URL clickeable al artículo original
+**1. Búsqueda por pregunta** (Tool: `search_knowledge_base`)
+- Input de texto libre en lenguaje natural
+- Endpoint: `POST /search`
+- Retorna documentos rankeados con scores de similitud
+- Selector de número de resultados (2, 3, 5)
+- Muestra: título, categoría, score, preview de contenido, URL
 
-### Estadísticas (Sidebar)
-- ✅ Total de documentos indexados
-- ✅ Número de categorías
-- ✅ Dimensión de embeddings
-- ✅ Lista de categorías disponibles
+**2. Consulta por URL** (Tool: `get_article_by_url`)
+- Input: URL completa de artículo de Bancolombia
+- Endpoint: `GET /article?url=...`
+- Retorna todos los chunks del artículo
+- Muestra: título, categoría, total de chunks, contenido completo
+
+**3. Ver categorías** (Tool: `list_categories`)
+- Botón: "Listar categorías"
+- Endpoint: `GET /categories`
+- Retorna lista completa de 47 categorías disponibles
+- Muestra: lista numerada ordenada alfabéticamente
+
+**4. Ver estadísticas** (Resource: `knowledge-base://stats`)
+- Botón: "Mostrar estadísticas"
+- Endpoint: `GET /stats`
+- Retorna métricas de la base de conocimiento
+- Muestra: total docs, categorías, dimensión embeddings, métrica distancia, fecha actualización
+
+### Configuración (Sidebar)
+- Selector de número de resultados (solo aplica a modo 1)
+- Botón "Limpiar historial"
+- Preview de estadísticas en tiempo real
+
+### Historial de Conversación
+- Persistente durante la sesión
+- Muestra interacciones en todos los modos
+- Se mantiene al cambiar entre modos
+- Se limpia con botón dedicado
 
 ---
 
-## 📸 Ejemplo de Uso
+## 📸 Ejemplos de Uso
 
-### Pregunta
+### Modo 1: Búsqueda por pregunta
+
+**Input:**
 ```
 Usuario: ¿Qué seguros ofrece Bancolombia?
 ```
 
-### Respuesta
+**Output:**
 ```
 Encontré 3 documentos relevantes:
 
@@ -79,12 +105,80 @@ Encontré 3 documentos relevantes:
    
    Bancolombia Corresponsal Bancario Personas Productos...
    
-   📎 Ver artículo completo
+   Ver artículo completo
    
 ---
 
 2. Seguros Bancolombia [Score: 0.58]
    ...
+```
+
+### Modo 2: Consulta por URL
+
+**Input:**
+```
+URL: https://www.bancolombia.com/personas/creditos
+```
+
+**Output:**
+```
+Créditos Bancolombia
+
+Categoría: creditos
+Total de chunks: 2
+URL: https://www.bancolombia.com/personas/creditos
+
+---
+
+Chunk 1
+[contenido completo del chunk 1]
+Palabras: 450
+
+---
+
+Chunk 2
+[contenido completo del chunk 2]
+Palabras: 380
+```
+
+### Modo 3: Ver categorías
+
+**Output:**
+```
+Categorías disponibles
+Total: 47
+
+---
+
+1. a-la-mano
+2. ahorro
+3. banco
+4. beneficios
+...
+47. trabajadores-independientes
+```
+
+### Modo 4: Ver estadísticas
+
+**Output:**
+```
+Estadísticas de la Base de Conocimiento
+
+Estado: operational
+Total de documentos: 94
+Número de categorías: 47
+Dimensión de embeddings: 384
+Métrica de distancia: cosine
+Fecha de última actualización: 2026-04-12
+Fuente: https://www.bancolombia.com/personas
+
+---
+
+Categorías principales
+1. a-la-mano
+2. ahorro
+...
+20. seguros
 ```
 
 ---
@@ -175,7 +269,7 @@ Edita en `app.py` línea ~31:
 ```python
 n_results = st.selectbox(
     "Número de resultados:",
-    options=[3, 5, 7, 10],  # Agregar más opciones
+    options=[2, 3, 5],
     index=0
 )
 ```
@@ -203,7 +297,7 @@ front/app.py
 
 ## 🧪 Testing
 
-### Pruebas manuales recomendadas
+### Pruebas manuales realizadas
 
 1. **Búsqueda exitosa:**
    - Pregunta: "¿Qué seguros ofrece Bancolombia?"
@@ -225,7 +319,7 @@ front/app.py
    - Apagar API REST (`Ctrl+C` en terminal)
    - Intentar búsqueda
    - Verificar: mensaje de error amigable
-
+ 
 ---
 
 ## 📚 Recursos
@@ -233,30 +327,3 @@ front/app.py
 - [Documentación Streamlit](https://docs.streamlit.io)
 - [API REST Swagger](http://localhost:8001/docs)
 - [Postman Collection](../mcp/Bancolombia_API.postman_collection.json)
-
----
-
-## 🤝 Contribución
-
-Para mejorar el frontend:
-
-1. Fork del repositorio
-2. Crear branch: `git checkout -b feature/mejora-frontend`
-3. Editar `front/app.py`
-4. Probar cambios: `streamlit run front/app.py`
-5. Commit: `git commit -am 'feat: mejora en frontend'`
-6. Push y crear Pull Request
-
----
-
-## 📄 Licencia
-
-Parte de la prueba técnica Bancolombia - Uso educativo
-
----
-
-**Autor:** Danilo Gómez  
-**Fecha:** 12 de abril de 2026  
-**Repositorio:** github.com/DANILO97RAM/rag-assistant
-
-<!-- Código generado por GitHub Copilot -->
