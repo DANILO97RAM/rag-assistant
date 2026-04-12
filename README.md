@@ -84,10 +84,9 @@ rag-assistant/
 │   │   └── processor.py             # Orquestador limpieza + chunking
 │   ├── services/
 │   │   ├── database.py              # ChromaDB service
-│   │   └── mcp_server.py            # FastMCP server (TODO)
 │   └── main.py                      # CLI principal
 ├── tests/
-│   ├── test_chromadb.py             # Tests unitarios ChromaDB
+│   ├── test_chromadb.py                    # Tests unitarios ChromaDB
 │   └── test_chromadb_realistic_queries.py  # Validación con queries
 ├── scripts/
 │   └── analyze_content.py           # Análisis de contenido scrapeado
@@ -97,10 +96,7 @@ rag-assistant/
 │   ├── embeddings_sentence-transformers.parquet  # 94 vectores 384D
 │   └── chroma_db/                   # Base de datos ChromaDB
 ├── docs/
-│   ├── prueba-tecnica.md            # Especificación del proyecto
-│   ├── scraping_report.md           # Reporte de scraping
-│   ├── CHROMADB_PLAN.md             # Plan de implementación ChromaDB
-│   └── CHROMADB_VALIDATION_REPORT.md # Reporte de validación completo
+│   └── prueba-tecnica.md            # Reporte de validación completo
 ├── requirements.txt                 # Dependencias Python
 └── Makefile                         # Comandos de automatización
 ```
@@ -115,7 +111,7 @@ rag-assistant/
 URL_BASE = "https://www.bancolombia.com/personas"
 PROFUNDIDAD = 2
 MAX_PÁGINAS = 50
-CONCURRENCIA = 8
+CONCURRENCIA = 10
 ```
 
 **Técnica:** Crawling BFS (Breadth-First Search)
