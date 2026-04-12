@@ -35,13 +35,13 @@ python api_server.py
 📦 Versión: 1.0.0
 📂 ChromaDB path: /path/to/data/chroma_db
 ✅ Base lista: 94 documentos
-INFO:     Uvicorn running on http://0.0.0.0:8000
+INFO:     Uvicorn running on http://0.0.0.0:8001
 ```
 
 ### 3. Abrir Documentación Interactiva
 
 ```
-http://localhost:8000/docs
+http://localhost:8001/docs
 ```
 
 **Swagger UI** te permite probar todos los endpoints desde el navegador.
@@ -53,7 +53,7 @@ http://localhost:8000/docs
 ### 1. Health Check
 
 ```http
-GET http://localhost:8000/
+GET http://localhost:8001/
 ```
 
 **Respuesta:**
@@ -71,7 +71,7 @@ GET http://localhost:8000/
 ### 2. Búsqueda Semántica
 
 ```http
-POST http://localhost:8000/search
+POST http://localhost:8001/search
 Content-Type: application/json
 
 {
@@ -110,7 +110,7 @@ Content-Type: application/json
 ### 3. Obtener Artículo por URL
 
 ```http
-GET http://localhost:8000/article?url=https://www.bancolombia.com/personas/creditos
+GET http://localhost:8001/article?url=https://www.bancolombia.com/personas/creditos
 ```
 
 **Respuesta:**
@@ -138,7 +138,7 @@ GET http://localhost:8000/article?url=https://www.bancolombia.com/personas/credi
 ### 4. Listar Categorías
 
 ```http
-GET http://localhost:8000/categories
+GET http://localhost:8001/categories
 ```
 
 **Respuesta:**
@@ -160,7 +160,7 @@ GET http://localhost:8000/categories
 ### 5. Estadísticas
 
 ```http
-GET http://localhost:8000/stats
+GET http://localhost:8001/stats
 ```
 
 **Respuesta:**
@@ -193,13 +193,13 @@ GET http://localhost:8000/stats
 #### Request 1: Health Check
 ```
 Method: GET
-URL: http://localhost:8000/
+URL: http://localhost:8001/
 ```
 
 #### Request 2: Search
 ```
 Method: POST
-URL: http://localhost:8000/search
+URL: http://localhost:8001/search
 Headers:
   Content-Type: application/json
 Body (raw JSON):
@@ -212,19 +212,19 @@ Body (raw JSON):
 #### Request 3: Get Article
 ```
 Method: GET
-URL: http://localhost:8000/article?url=https://www.bancolombia.com/personas/creditos
+URL: http://localhost:8001/article?url=https://www.bancolombia.com/personas/creditos
 ```
 
 #### Request 4: Categories
 ```
 Method: GET
-URL: http://localhost:8000/categories
+URL: http://localhost:8001/categories
 ```
 
 #### Request 5: Stats
 ```
 Method: GET
-URL: http://localhost:8000/stats
+URL: http://localhost:8001/stats
 ```
 
 ---
@@ -233,10 +233,10 @@ URL: http://localhost:8000/stats
 
 ```bash
 # Health check
-curl http://localhost:8000/
+curl http://localhost:8001/
 
 # Search
-curl -X POST http://localhost:8000/search \
+curl -X POST http://localhost:8001/search \
   -H "Content-Type: application/json" \
   -d '{
     "query": "¿Qué seguros ofrece Bancolombia?",
@@ -244,13 +244,13 @@ curl -X POST http://localhost:8000/search \
   }'
 
 # Get article
-curl "http://localhost:8000/article?url=https://www.bancolombia.com/personas/creditos"
+curl "http://localhost:8001/article?url=https://www.bancolombia.com/personas/creditos"
 
 # Categories
-curl http://localhost:8000/categories
+curl http://localhost:8001/categories
 
 # Stats
-curl http://localhost:8000/stats
+curl http://localhost:8001/stats
 ```
 
 ---
@@ -261,7 +261,7 @@ curl http://localhost:8000/stats
 import requests
 
 # Base URL
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://localhost:8001"
 
 # 1. Health check
 response = requests.get(f"{BASE_URL}/")
@@ -301,7 +301,7 @@ print(f"Documentos: {stats['total_documents']}")
 | Característica | Servidor MCP | API REST |
 |----------------|--------------|----------|
 | **Transporte** | stdio (stdin/stdout) | HTTP |
-| **Puerto** | N/A | 8000 |
+| **Puerto** | N/A | 8001 |
 | **Cliente** | Agentes MCP | Postman, curl, navegador |
 | **Protocolo** | JSON-RPC 2.0 | REST |
 | **Documentación** | MCP spec | Swagger UI |
@@ -327,14 +327,14 @@ uvicorn.run(app, host="0.0.0.0", port=9000)  # Cambiar a 9000
 
 ```bash
 # Para mayor seguridad (solo acceso local):
-uvicorn.run(app, host="127.0.0.1", port=8000)
+uvicorn.run(app, host="127.0.0.1", port=8001)
 ```
 
 ### Modo Producción
 
 ```bash
 # Con múltiples workers
-uvicorn mcp.api_server:app --host 0.0.0.0 --port 8000 --workers 4
+uvicorn mcp.api_server:app --host 0.0.0.0 --port 8001 --workers 4
 ```
 
 ---
@@ -344,9 +344,9 @@ uvicorn mcp.api_server:app --host 0.0.0.0 --port 8000 --workers 4
 ### Error: "Address already in use"
 
 ```bash
-# Buscar proceso en puerto 8000
-lsof -i :8000  # Linux/Mac
-netstat -ano | findstr :8000  # Windows
+# Buscar proceso en puerto 8001
+lsof -i :8001  # Linux/Mac
+netstat -ano | findstr :8001  # Windows
 
 # Matar proceso
 kill -9 <PID>  # Linux/Mac
@@ -372,9 +372,9 @@ python src/main.py --index-chromadb
 
 ## 📚 Documentación Adicional
 
-- **Swagger UI**: `http://localhost:8000/docs`
-- **ReDoc**: `http://localhost:8000/redoc`
-- **OpenAPI JSON**: `http://localhost:8000/openapi.json`
+- **Swagger UI**: `http://localhost:8001/docs`
+- **ReDoc**: `http://localhost:8001/redoc`
+- **OpenAPI JSON**: `http://localhost:8001/openapi.json`
 
 ---
 
@@ -391,9 +391,9 @@ make api_server
 make api_test
 
 # Abrir Swagger UI
-xdg-open http://localhost:8000/docs  # Linux
-open http://localhost:8000/docs      # Mac
-start http://localhost:8000/docs     # Windows
+xdg-open http://localhost:8001/docs  # Linux
+open http://localhost:8001/docs      # Mac
+start http://localhost:8001/docs     # Windows
 ```
 
 ---

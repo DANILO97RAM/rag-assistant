@@ -66,4 +66,7 @@ n8n_data/
 .env
 
 # Documentación local 
-docs/
+docs/*.md
+docs/*.sh
+docs/*.json
+
