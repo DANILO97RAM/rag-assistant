@@ -60,7 +60,7 @@ with st.sidebar:
             
             st.metric("Total Documentos", stats["total_documents"])
             st.metric("Categorías", stats["num_categories"])
-            st.metric("Dimensión Embeddings", f"{stats['embedding_dimension']}D")
+            st.metric("Dimensión Embeddings", f"{stats['embedding_dimension']}")
             st.metric("Métrica Distancia", stats["distance_metric"])
         else:
             st.warning("⚠️ No se pudieron cargar estadísticas")
