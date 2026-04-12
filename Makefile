@@ -136,6 +136,10 @@ api-install: ## Instala las dependencias del servidor API
 api-test: ## Ejecuta los tests del servidor API REST > Muestra estadisticas del servidor API REST (puerto 8001)
 	curl http://localhost:8001/ && echo "" && curl http://localhost:8001/stats
 
+# FRONTEND STREAMLIT
+frontend-up: ## Ejecuta el frontend Streamlit (puerto 8501)
+	./venv/bin/streamlit run front/app.py
+
 # Análisis de contenido
 
 analyze-content: ## Analiza el contenido scrappeado: muestra estadísticas del contenido scrappeado, calidad del scrapping y genera preguntas de ejemplo para evaluar la calidad del scrapping
