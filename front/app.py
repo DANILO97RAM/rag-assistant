@@ -60,9 +60,15 @@ with st.sidebar:
             
             st.metric("Total Documentos", stats["total_documents"])
             st.metric("Categorías", stats["num_categories"])
-            st.metric("Dimensión Embeddings", f"{stats['embedding_dimension']}")
+            st.metric("Dimensión Embeddings", f"{stats['embedding_dimension']}D")
             st.metric("Métrica Distancia", stats["distance_metric"])
             
+            with st.expander("🏷️ Ver categorías"):
+                categories = stats.get("categories", [])
+                for cat in categories[:10]:
+                    st.text(f"• {cat}")
+                if len(categories) > 10:
+                    st.caption(f"... y {len(categories) - 10} más")
         else:
             st.warning("⚠️ No se pudieron cargar estadísticas")
             
@@ -186,6 +192,6 @@ if prompt := st.chat_input("¿Qué deseas saber sobre Bancolombia?"):
 # ============================================================================
 
 st.divider()
-st.caption("🤖 Asistente Virtual Bancolombia | Powered by RAG + ChromaDB + Streamlit")
+st.caption("🤖 Asistente Virtual Bancolombia | Powered by RAG + ChromaDB + Streamlit | By Danilo Ramirez Gomez")
 st.caption("Base de conocimiento: extraído de bancolombia.com/personas")
 

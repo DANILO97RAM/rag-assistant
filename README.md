@@ -625,11 +625,85 @@ Content-Type: application/json
 
 **Nota:** Ambos servidores usan la **misma base de datos ChromaDB** y exponen la misma funcionalidad.
 
+### Documentación Postman: 
+
+- **Colección Postman:** [mcp/Bancolombia_API.postman_collection.json](mcp/Bancolombia_API.postman_collection.json)
+
+---
+
+## 💻 Frontend - Interfaz de Chat
+
+Interfaz de usuario tipo chat para interactuar con el asistente virtual de Bancolombia mediante la API REST, permitándole al usuario hacer preguntas y recibir respuestas formateadas con títulos, categorías, URLs y scores de similitud. El usuario deberá seleccionar si quiere consultar solo a tarvés de pregunta, introduciendo una url y su infromación o ver las categorias.
+
+### Características
+
+- ✅ **Framework**: Streamlit
+- ✅ **Puerto**: 8501
+- ✅ **Historial**: Conversación completa con st.session_state
+- ✅ **Fuentes**: URLs clickeables en cada respuesta
+- ✅ **Configuración**: Selector de número de resultados (2, 3, 5) 
+- ✅ **Estadísticas**: Sidebar con métricas de la base de conocimiento (Usando endpoint `/stats` de la API REST (recurso MCP))
+
+### Inicio Rápido
+
+```bash
+# Levantar servicios backend
+make docker-up  # ChromaDB (puerto 8000)
+make db-index   # Indexar documentos en ChromaDB
+make mcp-up     # API REST (puerto 8001)
+
+# Ejecutar frontend
+make frontend-up 
+```
+
+**El frontend se abrirá automáticamente en:** `http://localhost:8501`; pedirá correo para inciar, por favor abrir en el navegador para una mejor experiencia.
+
+### Arquitectura Frontend → Backend
+
+```
+Usuario (navegador)
+    ↓
+Streamlit UI (puerto 8501)
+    ↓ HTTP POST /search
+API REST (puerto 8001)
+    ↓ ChromaDB HttpClient
+ChromaDB Docker (puerto 8000)
+```
+
+### Manejo de Errores
+
+**API no disponible:**
+```
+❌ No se pudo conectar con la API.
+
+Verifica que esté ejecutándose:
+make mcp-up
+```
+
+**Timeout:**
+```
+⏱️ La búsqueda tardó demasiado. Intenta de nuevo: Intenta con otra pregunta o reduce el número de resultados por favor
+```
+
+**Sin resultados:**
+```
+❌ No encontré información sobre esa consulta.
+
+Intenta reformular tu pregunta o consulta sobre temas como:
+- Seguros
+- Créditos
+- Inversiones
+ Puede usar 
+```
+
 ### Documentación Completa
 
-- **Guía rápida:** [CURL_QUICK_START.md](CURL_QUICK_START.md)
-- **API REST completa:** [mcp/API_REST_README.md](mcp/API_REST_README.md)
-- **Colección Postman:** [mcp/Bancolombia_API.postman_collection.json](mcp/Bancolombia_API.postman_collection.json)
+Ver: [front/README.md](front/README.md)
+
+- Configuración detallada
+- Troubleshooting
+- Personalización
+- Testing manual
 
 ---
 ## �📊 Limitaciones y Recomendaciones
@@ -718,4 +792,4 @@ Este proyecto es parte de una prueba técnica y está destinado únicamente para
 - Bancolombia por el contenido público
 - LangChain por el framework RAG <3
 - Sentence Transformers por los modelos de embeddings, craks, idolos, mastodontes, genios, dioses, semidioses, leyendas, mitos, bestias mitológicas, unicornios, dragones, fénix, quimeras, grifos, sirenas, centauros, minotauros, esfinges, cíclopes, gorgonas, harpías, sátiros, ninfas y demás criaturas fantásticas que hacen posible la magia de los embeddings.
-- ChromaDB por la base de datos vectorial
+- ChromaDB por la base de datos vectorial, cosita bien hecha, rápida, eficiente, fácil de usar y con un nombre genial.
