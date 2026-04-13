@@ -90,7 +90,7 @@ with st.expander("ℹ️ ¿Qué puedo preguntar?"):
     st.markdown("""
     El agente conversacional puede ayudarte con:
     
-    - 🔍 **Búsquedas generales**: "¿Qué seguros ofrece Bancolombia?"
+    - 🔍 **Búsquedas generales**: "Qué seguros ofrece el banco?"
     - 🔗 **Consultas por URL**: "Información de https://www.bancolombia.com/personas/creditos"
     - 📂 **Categorías**: "¿Qué categorías hay disponibles?"
     - 📊 **Estadísticas**: "¿Cuántos documentos hay indexados?"
@@ -233,8 +233,4 @@ if prompt := st.chat_input("Escribe tu pregunta o URL aquí..."):
 # ============================================================================
 
 st.divider()
-st.caption("🏦 Asistente Virtual Bancolombia | Powered by RAG + MCP + Agente Conversacional + ChromaDB + Streamlit")
-st.caption("📐 Arquitectura: Frontend → Agente (Cliente MCP) → Servidor MCP → ChromaDB")
 st.caption("👨‍💻 By Danilo Ramirez Gomez | Base de conocimiento: bancolombia.com/personas")
-
-# Código generado por GitHub Copilot

@@ -346,12 +346,10 @@ Verificar:
 Danilo Ramirez Gomez  
 Fecha: 12 de abril de 2026
 
-<!-- Código generado por GitHub Copilot -->
 # 🏦 Frontend Streamlit - Asistente Virtual Bancolombia
 
 Interfaz de chat conversacional donde el usuario escribe cualquier pregunta y el **agente conversacional** decide automáticamente qué tool MCP usar para responder.
 
-**Cumple Requisito 3.6:** Frontend recibe respuestas del agente (no directamente del API)
 
 **Arquitectura:** Frontend → Agente Conversacional → API REST → MCP → ChromaDB
 
