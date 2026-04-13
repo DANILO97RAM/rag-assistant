@@ -1,70 +1,43 @@
 # RAG Assistant - Bancolombia
 
-Sistema de recuperación y generación aumentada (RAG) para consultas sobre productos y servicios de Bancolombia. Implementa scraping web, procesamiento de texto, embeddings semánticos, búsqueda vectorial y servidor MCP para integración con agentes conversacionales.
+**Prueba Técnica - Proceso de Selección 59034**
+
+Sistema RAG (Retrieval-Augmented Generation) completo para consultas sobre productos y servicios de Bancolombia. Implementa web scraping, procesamiento de texto, base de datos vectorial, servidor MCP, agente conversacional y frontend de chat.
 
 ---
 
-## 🎯 Características Principales
+## 🎯 ¿Qué se implementó?
 
-- ✅ **Web Scraping Inteligente**: Crawling BFS con renderizado JavaScript (Playwright)
-- ✅ **Procesamiento de Texto**: Limpieza, normalización y chunking semántico
-- ✅ **Embeddings de Alta Calidad**: Sentence Transformers (384 dimensiones)
-- ✅ **Base de Datos Vectorial**: ChromaDB con persistencia local y cosine similarity
-- ✅ **Búsqueda Semántica**: Retrieval con metadatos y filtrado por categorías
-- ✅ **API MCP**: Exposición de herramientas mediante Model Context Protocol
-- ✅ **Testing Completo**: 6 tests unitarios + validación con queries realistas
-
----
-
-## 📊 Métricas del Sistema
-
-| Métrica | Valor |
-|---------|-------|
-| Páginas scrapeadas | 50 |
-| Chunks generados | 94 |
-| Categorías detectadas | 47 |
-| Dimensión embeddings | 384 |
-| Precisión promedio | 0.645 |
-| Queries con score >0.70 | 29% |
-
-Ver reporte completo: [docs/CHROMADB_VALIDATION_REPORT.md](docs/CHROMADB_VALIDATION_REPORT.md)
+✅ **Requisito 3.1 - Web Scraping**: 50 páginas scrapeadas con Playwright (BFS, profundidad 2)  
+✅ **Requisito 3.2 - Procesamiento de datos**: Limpieza HTML, chunking semántico (1024 tokens, overlap 128)  
+✅ **Requisito 3.3 - Embeddings**: Sentence Transformers local + ChromaDB vectorial (94 documentos, 47 categorías)  
+✅ **Requisito 3.4 - Servidor MCP**: FastMCP con 3 tools + 1 resource (stdio + API REST wrapper)  
+✅ **Requisito 3.5 - Agente conversacional**: Cliente MCP con razonamiento sobre intención del usuario  
+✅ **Requisito 3.6 - Frontend**: Streamlit chat con historial y citación de fuentes  
+✅ **Requisito 4.0 - CI/CD**: GitHub Actions con lint, tests y validación de estructura  
+✅ **Requisito 4.0 - Diagrama**: Ver [docs/DIAGRAMA_ARQUITECTURA.png](docs/DIAGRAMA_ARQUITECTURA.png) 
+✅ **Requisito 4.0 - Docker**: `docker-compose.yml` para ChromaDB + scripts de automatización
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-### Framework & Lenguaje
-- **Python 3.12.3** (compatible desde 3.11+)
-- **Pandas 3.0.2** - Procesamiento de datos
-- **Pydantic** - Validación de esquemas
+| Componente | Tecnología |
+|------------|------------|
+| **Lenguaje** | Python 3.12.3 |
+| **Web Scraping** | Playwright 1.49.1 (BFS crawling, JavaScript rendering) |
+| **Procesamiento de texto** | LangChain 0.3.17, BeautifulSoup4 4.12.3 |
+| **Chunking** | RecursiveCharacterTextSplitter (1024 tokens, overlap 128) |
+| **Embeddings** | Sentence Transformers 3.3.1 (`all-MiniLM-L6-v2`, 384D) vía **Hugging Face local** |
+| **Base vectorial** | ChromaDB 1.5.7 (Docker, persistencia local, cosine similarity) |
+| **Servidor MCP** | FastMCP 3.2.3 (stdio + wrapper API REST FastAPI) |
+| **Agente** | Cliente MCP custom (razonamiento sobre intención) |
+| **Frontend** | Streamlit 1.30+ (puerto 8501) |
+| **Orquestación** | Docker Compose, Makefile |
+| **CI/CD** | GitHub Actions (lint, tests, validación) |
+| **Testing** | pytest 9.0.3 |
 
-### Web Scraping
-- **Playwright 1.49.1** - Browser automation con renderizado JavaScript
-- **BeautifulSoup4 4.12.3** - Parsing HTML
-- **Técnica**: BFS crawling con profundidad 2, concurrencia 8
-
-### Procesamiento de Texto
-- **LangChain 0.3.17** - Framework para procesamiento RAG
-- **RecursiveCharacterTextSplitter** - Chunking semántico
-  - Chunk size: 1024 tokens
-  - Overlap: 128 tokens
-- **tiktoken 0.9.0** - Tokenizador (cl100k_base)
-
-### Embeddings & Búsqueda Vectorial
-- **Sentence Transformers 3.3.1** - Generación de embeddings
-  - Modelo: `all-MiniLM-L6-v2`
-  - Dimensiones: 384
-  - Velocidad: ~60-120 batches/segundo
-- **ChromaDB 1.5.7** - Base de datos vectorial
-  - Modo: Persistent (local storage)
-  - Distancia: Cosine similarity
-  - Indexación: HNSW
-- **PyTorch 2.5.1** - Backend para inference
-
-### Testing
-- **pytest 9.0.3** - Framework de testing
-- **pytest-asyncio** - Tests asíncronos
-- Cobertura: 6 tests unitarios + validación realista
+**Nota:** El proyecto usa **Hugging Face local** para embeddings sin API keys, pero incluye soporte alternativo para **Google Gemini** (configurar `GEMINI_API_KEY`).
 
 ---
 
@@ -105,16 +78,14 @@ rag-assistant/
 │   └── test_realistic_queries.py    # Validación con queries
 ├── scripts/
 │   └── analyze_content.py           # Análisis de contenido scrapeado
-├── data/
+├── data/ (Nota: Estos archivos se generan al ejecutar el pipeline ETL)
 │   ├── scraped_pages.parquet        # 50 páginas (raw)
 │   ├── chunks.parquet               # 94 chunks procesados
-│   ├── embeddings_sentence-transformers.parquet  # 94 vectores 384D
+│   ├── embeddings_sentence-transformers.parquet  # 94 vectores 384
 │   └── chroma_db/                   # Persistencia ChromaDB
 ├── docs/
-│   ├── DIAGRAMA_ARQUITECTURA.html   # Diagrama Mermaid interactivo
 │   ├── DIAGRAMA_ARQUITECTURA.png    # Diagrama visual arquitectura
 │   ├── ARQUITECTURA_MCP.md          # Justificación técnica MCP
-│   ├── validacion_pre_entrega.sh    # Script de validación final
 │   └── prueba-tecnica.md            # Especificación del proyecto
 ├── docker-compose.yml               # ChromaDB container (puerto 8000)
 ├── requirements.txt                 # Dependencias Python
@@ -124,95 +95,13 @@ rag-assistant/
 
 ---
 
-## 🔄 Pipeline de Procesamiento
-
-### 1. Web Scraping
-```python
-# Configuración
-URL_BASE = "https://www.bancolombia.com/personas"
-PROFUNDIDAD = 2
-MAX_PÁGINAS = 50
-CONCURRENCIA = 10
-```
-
-**Técnica:** Crawling BFS (Breadth-First Search)
-- Renderizado JavaScript con Playwright
-- Extracción de título, categoría, y contenido HTML
-- Normalización de URLs y deduplicación
-- Guardado en `data/scraped_pages.parquet`
-
-**Resultado:** 50 páginas, 47 categorías únicas
-
-### 2. Limpieza de Texto
-- Eliminación de scripts, estilos y metadatos
-- Normalización de espacios en blanco
-- Preservación de estructura semántica
-- Extracción de metadata (URL, título, categoría, fecha)
-
-### 3. Chunking Semántico
-```python
-# Configuración
-CHUNK_SIZE = 1024 tokens
-OVERLAP = 128 tokens
-TOKENIZER = "cl100k_base" (GPT-4 tokenizer)
-```
-
-**Técnica:** RecursiveCharacterTextSplitter (LangChain)
-- Separadores: `\n\n`, `\n`, `. `, ` `
-- Evita cortes en medio de oraciones
-- Overlap para preservar contexto entre chunks
-
-**Resultado:** 94 chunks con distribución:
-- Media: ~437 palabras/chunk
-- Mediana: ~359 palabras/chunk
-- Máximo: ~751 palabras/chunk
-
-### 4. Generación de Embeddings
-```python
-# Modelo
-MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-DIMENSIONS = 384
-BATCH_SIZE = 100
-```
-
-**Proceso:**
-1. Concatenación: `title + "\n" + texto`
-2. Encoding con Sentence Transformers
-3. Normalización L2
-4. Guardado en formato Parquet
-
-**Performance:**
-- Velocidad: 60-120 batches/segundo
-- Tamaño embeddings: ~145KB (94 vectores × 384D × float32)
-
-### 5. Indexación en ChromaDB
-```python
-# Configuración
-PERSIST_DIRECTORY = "data/chroma_db"
-DISTANCE_METRIC = "cosine"
-COLLECTION_NAME = "bancolombia_knowledge"
-```
-
-**Características:**
-- IDs determinísticos: SHA256(title + index + texto)[:16]
-- Metadata rica: url, title, category, fecha_extraccion, chunk_index, word_count
-- Indexación HNSW para búsqueda eficiente
-- Persistencia local (sin servidor externo)
-
-**Estadísticas:**
-- Total documentos: 94
-- Categorías: 47
-- Distancia: cosine (0.0 = idéntico, 1.0 = opuesto)
-
----
-
-## 🚀 Instalación y Uso
+## Inicio Rápido
 
 ### Prerrequisitos
-- Ububtu 20.04+ / Windows 10+ Con WSL
+- Ubuntu 20.04+ / Windows 10+ con WSL
 - Python 3.11+ (recomendado 3.12.3)
+- Docker y Docker Compose
 - 3GB RAM mínimo
-- 500MB espacio en disco
 
 ### Instalación
 
@@ -224,560 +113,66 @@ cd rag-assistant
 # Instalar dependencias
 make setup
 
-# Activar  entorno virtual
-source venv/bin/activate 
+# Activar entorno virtual
+source venv/bin/activate
 ```
-### Flujo de Ejecución
 
+### Ejecución
+
+#### Opción 1: Hugging Face Local (sin API key)
 ```bash
-# Ejecutar pipeline completo (scraping + limpieza + chunking + embeddings + indexación), usando hugging face de forma local
-make etl 
-# Tambien se puede gener la etl con gemini, no ejecutar ambas al mismo tiempo porque pueden generar conflictos con los recursos de la máquina
-# Definir variable de entorno GEMINI_API_KEY con la API key de Gemini antes de ejecutar la etl con gemini
-export GEMINI_API_KEY=XXXXAPIXXXX
+# Pipeline completo (scraping → limpieza → embeddings → indexación)
+make etl
+
+# Levantar servicios
+make docker-up        # ChromaDB (puerto 8000)
+make mcp-up          # Servidor MCP + API REST (puerto 8001)
+make frontend-up     # Frontend Streamlit (puerto 8501)
+```
+
+#### Opción 2: Google Gemini (requiere API key)
+```bash
+# Configurar API key
+export GEMINI_API_KEY=your_api_key_here
+
+# Pipeline con Gemini
 make etl-gemini
 
-# Levantar el servidor MCP para exponer la base de conocimiento de forma local
-make mcp_up
+# Levantar servicios (igual que opción 1)
+make docker-up && make mcp-up && make frontend-up
 ```
+Nota: Si por alguna razon se baja el mcp, se debe volver a indexar el contenido, ya que el servidor MCP no tiene persistencia de datos. Para ello ejecutar la indexación manualmente: **make db-index**
 
+```bash
+**Acceder al chat:** `http://localhost:8501`
+```
+---
+
+## 📐 Diseño de la Solución
+
+**Diagrama de arquitectura:**
+- [docs/DIAGRAMA_ARQUITECTURA.png](docs/DIAGRAMA_ARQUITECTURA.png) - Imagen estática
+
+**Documentación técnica:**
+- [docs/ARQUITECTURA_MCP.md](docs/ARQUITECTURA_MCP.md) - Justificación del enfoque MCP (stdio + wrapper HTTP)
+- [agent/README.md](agent/README.md) - Agente conversacional y razonamiento
+- [front/README.md](front/README.md) - Frontend Streamlit y modos de consulta
+- [mcp/README.md](mcp/README.md) - Servidor MCP (tools, resources, testing)
 
 ---
 
-## 🧪 Testing y Validación
+## 🧪 Testing
 
-### Tests Unitarios
+El proyecto incluye tests automatizados en `tests/`:
 
 ```bash
-# Ejecutar todos los tests
+# Tests unitarios de ChromaDB
 pytest tests/test_chromadb.py -v
-
-# Ver output detallado
-pytest tests/test_chromadb.py -v -s
 ```
 
-**Tests implementados:**
-1. ✅ `test_create_collection` - Creación de colección con cosine metric
-2. ✅ `test_add_documents` - Indexación de 3 documentos de prueba
-3. ✅ `test_search_semantic` - Búsqueda semántica con embeddings
-4. ✅ `test_get_by_url` - Filtrado por URL
-5. ✅ `test_get_categories` - Extracción de categorías únicas
-6. ✅ `test_get_stats` - Estadísticas de la colección
-
-**Resultado:** 6/6 tests passing ✅
-
-### Validación con Queries Realistas
-
-```bash
-python tests/test_chromadb_realistic_queries.py
-```
-
-**Queries evaluadas:**
-- ¿Qué seguros ofrece Bancolombia? (Score: 0.638)
-- ¿Qué es el consumidor financiero? (Score: 0.723) ✨
-- ¿Qué beneficios tiene la banca preferencial? (Score: 0.602)
-- ¿Qué es A la mano de Bancolombia? (Score: 0.626)
-- ¿Qué tipos de créditos hay disponibles? (Score: 0.654)
-- ¿Cómo puedo invertir mi dinero? (Score: 0.553)
-- ¿Quién es el defensor del consumidor financiero? (Score: 0.768) 🏆
-
-**Interpretación de scores:**
-- 0.70-1.00: Excelente precisión
-- 0.60-0.70: Buena precisión
-- 0.50-0.60: Precisión media
-- <0.50: Baja precisión
-
-Ver análisis completo: [docs/CHROMADB_VALIDATION_REPORT.md](docs/CHROMADB_VALIDATION_REPORT.md)
-
----
-
-## 📚 API ChromaDB
-
-### Inicialización
-
-```python
-from services.database import ChromaDBService
-
-db = ChromaDBService(persist_directory="data/chroma_db")
-db.create_collection()
-```
-
-### Búsqueda Semántica
-
-```python
-# Búsqueda simple
-results = db.search(
-    query="¿Qué seguros ofrece Bancolombia?",
-    n_results=5
-)
-
-# Búsqueda con filtro por categoría
-results = db.search(
-    query="información sobre seguros",
-    n_results=3,
-    where={"category": "seguros"}
-)
-
-# Estructura de resultados
-for result in results:
-    print(f"Score: {1 - result['distance']:.3f}")
-    print(f"Título: {result['metadata']['title']}")
-    print(f"Categoría: {result['metadata']['category']}")
-    print(f"Texto: {result['document'][:100]}...")
-```
-
-### Filtrado por URL
-
-```python
-chunks = db.get_by_url("https://www.bancolombia.com/personas/creditos")
-print(f"Encontrados {len(chunks)} chunks para esta URL")
-```
-
-### Listado de Categorías
-
-```python
-categories = db.get_categories()
-print(f"Categorías disponibles: {len(categories)}")
-# ['a-la-mano', 'bancolombia', 'creditos', 'seguros', ...]
-```
-
-### Estadísticas
-
-```python
-stats = db.get_stats()
-print(f"Total documentos: {stats['total_documents']}")
-print(f"Categorías: {stats['num_categories']}")
-print(f"Dimensión: {stats['embedding_dimension']}")
-print(f"Métrica: {stats['distance_metric']}")
-```
-
----
-
-## � Servidor API (Model Context Protocol)
-
-El sistema expone la base de conocimiento mediante un **servidor API REST** compatible con el protocolo MCP,
-
-### Características
-
-- ✅ **SDK Oficial**: FastMCP (Python)
-- ✅ **Transporte**: stdio (obligatorio)
-- ✅ **3 ENDPOINTS**: search_knowledge_base, get_article_by_url, list_categories
-- ✅ **1 Resource**: knowledge-base://stats
-- ✅ **Validación**: Parámetros y manejo de errores
-
-### Ejecución del Servidor
-
-```bash
-# Desde la raíz del proyecto
-cd mcp
-python main.py
-```
-
-### Tools Disponibles
-
-#### 1. search_knowledge_base
-
-Búsqueda semántica en la base de conocimiento:
-
-```python
-search_knowledge_base(
-    query="¿Qué seguros ofrece Bancolombia?",
-    n_results=5,
-    category="seguros"  # opcional
-)
-```
-
-**Retorna:**
-```json
-{
-  "query": "¿Qué seguros ofrece Bancolombia?",
-  "total_results": 3,
-  "documents": [
-    {
-      "rank": 1,
-      "content": "Seguros Bancolombia Protege tu salud...",
-      "url": "https://www.bancolombia.com/personas/seguros",
-      "title": "Seguros Bancolombia",
-      "category": "seguros",
-      "similarity_score": 0.638,
-      "word_count": 738
-    }
-  ]
-}
-```
-
-#### 2. get_article_by_url
-
-Recupera contenido completo de un artículo:
-
-```python
-get_article_by_url(url="https://www.bancolombia.com/personas/creditos")
-```
-
-**Retorna:**
-```json
-{
-  "url": "https://www.bancolombia.com/personas/creditos",
-  "total_chunks": 2,
-  "title": "Créditos Bancolombia",
-  "category": "creditos",
-  "chunks": [...]
-}
-```
-
-#### 3. list_categories
-
-Lista todas las categorías disponibles:
-
-```python
-list_categories()
-```
-
-**Retorna:**
-```json
-{
-  "total_categories": 47,
-  "categories": ["a-la-mano", "creditos", "seguros", ...]
-}
-```
-
-### Resource Disponible
-
-**URI**: `knowledge-base://stats`
-
-Expone estadísticas de la base de conocimiento:
-- Total documentos indexados
-- Número de categorías
-- Dimensión de embeddings
-- Métrica de distancia
-- Fecha de última actualización
-
-### Testing del Servidor MCP
-
-```bash
-# Ejecutar tests automatizados
-cd mcp
-python test_server.py
-```
-
-**Output esperado:**
-```
-🧪 TESTING SERVIDOR MCP - BANCOLOMBIA
-============================================================
-
-📋 TEST 1: search_knowledge_base
-------------------------------------------------------------
-✅ search_knowledge_base: OK
-   → 3 resultados encontrados
-   → Score top-1: 0.723
-
-📋 TEST 2: get_article_by_url
-------------------------------------------------------------
-✅ get_article_by_url: OK
-   → 2 chunks recuperados
-
-📋 TEST 3: list_categories
-------------------------------------------------------------
-✅ list_categories: OK
-   → 47 categorías disponibles
-
-============================================================
-📊 RESUMEN DE PRUEBAS
-============================================================
-Resultado: 3/3 tests pasados
-
-🎉 ¡Todos los tests pasaron exitosamente!
-```
-
-### Integración con Agentes
-
-El servidor MCP puede ser consumido por cualquier agente conversacional compatible:
-
-**Claude Desktop:**
-```json
-{
-  "mcpServers": {
-    "bancolombia": {
-      "command": "python",
-      "args": ["/path/to/rag-assistant/mcp/main.py"],
-      "env": {
-        "CHROMA_PATH": "/path/to/data/chroma_db"
-      }
-    }
-  }
-}
-```
-
-**LangChain/Python:**
-```python
-import subprocess
-import json
-
-# Iniciar servidor MCP
-process = subprocess.Popen(
-    ["python", "mcp/main.py"],
-    stdin=subprocess.PIPE,
-    stdout=subprocess.PIPE
-)
-
-# Enviar request
-request = {
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "tools/call",
-    "params": {
-        "name": "search_knowledge_base",
-        "arguments": {"query": "¿Qué créditos hay?"}
-    }
-}
-
-process.stdin.write(json.dumps(request).encode() + b'\n')
-response = json.loads(process.stdout.readline())
-```
-
-Ver documentación completa: [mcp/README.md](mcp/README.md)
-
----
-## 🌐 API REST (Testing con Postman/Insomnia)
-
-Para facilitar el testing y desarrollo, se incluye una **API REST** que expone la misma funcionalidad del servidor MCP mediante endpoints HTTP.
-
-### Características
-
-- ✅ **Framework**: FastAPI con Uvicorn
-- ✅ **Puerto**: 8000 (configurable)
-- ✅ **Documentación**: Swagger UI automática
-- ✅ **CORS**: Habilitado para desarrollo
-- ✅ **Validación**: Pydantic models
-- ✅ **Estado**: ✅ Validado con Postman
-
-### Inicio Rápido
-
-```bash
-# Instalar dependencias
-pip install fastapi uvicorn
-# O con Makefile
-make api_install
-
-# Iniciar servidor
-cd mcp
-python api_server.py
-# O con Makefile
-make api_server
-```
-
-**Output esperado:**
-```
-🚀 Iniciando Bancolombia API REST
-📦 Versión: 1.0.0
-✅ Base lista: 94 documentos
-INFO: Uvicorn running on http://0.0.0.0:8000
-```
-
-### Endpoints Disponibles
-
-| Endpoint | Método | Descripción | Status |
-|----------|--------|-------------|--------|
-| `/` | GET | Health check | ✅ Probado |
-| `/search` | POST | Búsqueda semántica | ✅ Probado |
-| `/article` | GET | Obtener artículo por URL | ✅ Probado |
-| `/categories` | GET | Listar categorías | ✅ Probado |
-| `/stats` | GET | Estadísticas | ✅ Probado |
-| `/docs` | GET | Swagger UI | ✅ Disponible |
-
-### Testing con Postman
-
-1. **Importar colección:**
-   - Abrir Postman
-   - Click en **Import**
-   - Seleccionar: `mcp/Bancolombia_API.postman_collection.json`
-
-2. **Ejecutar requests:**
-   - La colección incluye 8 requests de ejemplo
-   - Health check, búsquedas, artículos, categorías, stats
-
-3. **Swagger UI (alternativa):**
-   - Abrir navegador: `http://localhost:8000/docs`
-   - Probar endpoints directamente desde la interfaz
-
-### Ejemplo: Búsqueda Semántica
-
-**Request:**
-```bash
-POST http://localhost:8000/search
-Content-Type: application/json
-
-{
-  "query": "¿Qué seguros ofrece Bancolombia?",
-  "n_results": 3,
-  "category": "seguros"  // opcional
-}
-```
-
-**Response:**
-```json
-{
-  "query": "¿Qué seguros ofrece Bancolombia?",
-  "total_results": 3,
-  "documents": [
-    {
-      "rank": 1,
-      "similarity_score": 0.638,
-      "title": "Seguros Bancolombia",
-      "url": "https://www.bancolombia.com/personas/seguros",
-      "content": "Seguros Bancolombia Protege tu salud...",
-      "category": "seguros",
-      "word_count": 738
-    }
-  ]
-}
-```
-
-### Diferencias MCP vs REST API
-
-| Característica | Servidor MCP | API REST |
-|----------------|--------------|----------|
-| **Transporte** | stdio (stdin/stdout) | HTTP |
-| **Puerto** | N/A | 8000 |
-| **Cliente** | Agentes MCP (Claude, GPT) | Postman, navegador, curl |
-| **Protocolo** | JSON-RPC 2.0 | REST |
-| **Documentación** | MCP spec | Swagger UI |
-| **Uso principal** | Agentes conversacionales | Testing, debugging, desarrollo |
-
-**Nota:** Ambos servidores usan la **misma base de datos ChromaDB** y exponen la misma funcionalidad.
-
-### Documentación Postman: 
-
-- **Colección Postman:** [mcp/Bancolombia_API.postman_collection.json](mcp/Bancolombia_API.postman_collection.json)
-
----
-
-## 💻 Frontend - Interfaz de Chat
-
-Interfaz de usuario tipo chat para interactuar con el asistente virtual de Bancolombia mediante la API REST, permitiéndole al usuario hacer preguntas y recibir respuestas formateadas con títulos, categorías, URLs y scores de similitud. El usuario deberá seleccionar si quiere consultar solo a través de pregunta, introduciendo una URL y su información o ver las categorías.
-
-### Características
-
-- ✅ **Framework**: Streamlit
-- ✅ **Puerto**: 8501
-- ✅ **Historial**: Conversación completa con st.session_state
-- ✅ **Fuentes**: URLs clickeables en cada respuesta
-- ✅ **Configuración**: Selector de número de resultados (2, 3, 5) 
-- ✅ **Estadísticas**: Sidebar con métricas de la base de conocimiento (Usando endpoint `/stats` de la API REST (recurso MCP))
-
-### El front soporta 3 modos de consulta:
-1. **Pregunta**: El usuario hace una pregunta libre y el sistema responde con los resultados más relevantes de la base de conocimiento.
-2. **URL**: El usuario introduce una URL y el sistema recupera y muestra toda la información disponible para esa URL (usando el endpoint `get_article_by_url` del servidor API REST).
-3. **Categorías**: El usuario selecciona una categoría y el sistema muestra todos los documentos disponibles en esa categoría (usando el endpoint `list_categories` del servidor API REST).
-4. **Estadísticas**: El usuario puede ver estadísticas en tiempo real de la base de conocimiento, como el número total de documentos, categorías disponibles, dimensión de los embeddings y fecha de última actualización (usando el recurso `knowledge-base://stats` del servidor MCP).
-
-### Inicio Rápido
-
-```bash
-# Levantar servicios backend
-make docker-up  # ChromaDB (puerto 8000)
-make db-index   # Indexar documentos en ChromaDB
-make mcp-up     # API REST (puerto 8001)
-
-# Ejecutar frontend
-make frontend-up 
-```
-
-**El frontend se abrirá automáticamente en:** `http://localhost:8501`; pedirá correo la primera vez para iniciar, por favor abrir en el navegador para interactuar con la interfaz de Streamlit.
-
-### Arquitectura Frontend → Backend
-
-```
-Usuario (navegador)
-    ↓
-Streamlit UI (puerto 8501)
-    ↓ HTTP POST /search
-API REST (puerto 8001)
-    ↓ ChromaDB HttpClient
-ChromaDB Docker (puerto 8000)
-```
-
-### Manejo de Errores
-
-**API no disponible:**
-```
-❌ No se pudo conectar con la API.
-
-Verifica que esté ejecutándose:
-make mcp-up
-```
-
-**Timeout:**
-```
-⏱️ La búsqueda tardó demasiado. Intenta de nuevo: Intenta con otra pregunta o reduce el número de resultados por favor
-```
-
-**Sin resultados:**
-```
-❌ No encontré información sobre esa consulta.
-
-Intenta reformular tu pregunta o consulta sobre temas como:
-- Seguros
-- Créditos
-- Inversiones
- Puede usar 
-```
-
-### Documentación Completa
-
-Ver: [front/README.md](front/README.md)
-
-- Configuración detallada
-- Troubleshooting
-- Personalización
-- Testing manual
-
----
-## �📊 Limitaciones y Recomendaciones
-
-### Limitaciones Actuales
-
-1. **Contenido Limitado**: Solo 50 páginas scrapeadas
-   - Falta información detallada de productos
-   - No incluye requisitos, tasas, procedimientos específicos
-   - Categorías con poco contenido (ej: pagos solo 312 palabras)
-
-2. **Calidad de Retrieval**: Depende de contenido disponible
-   - 29% queries con score >0.70 (excelente)
-   - 43% queries con score 0.60-0.70 (bueno)
-   - 29% queries con score <0.60 (mejorable)
-
-3. **Scraping Superficial**: Profundidad 2 niveles
-   - No captura páginas de productos detallados
-   - Mucho contenido navegacional/informativo vs transaccional
-
-### Recomendaciones de Mejora
-
-#### Corto Plazo
-- ✅ Implementar servidor MCP para exposición de API
-- ✅ Documentar limitaciones de contenido en README
-- ✅ Usar queries realistas en demos basadas en contenido disponible
-
-#### Mediano Plazo
-- 🔄 **Mejorar scraping**:
-  - Incrementar a 150-200 páginas
-  - Profundidad 3 niveles
-  - Priorizar categorías con poco contenido
-- 🔄 **Optimizar chunking**:
-  - Revisar estrategia para páginas importantes
-  - Aumentar overlap a 256 tokens en páginas clave
-  - Cambiar el chunkeo a nivel de párrafo para preservar mejor la semántica, actualmente se chunkea con RecursiveCharacterTextSplitter de langchain, pero se puede mejorar usando una estrategia personalizada basada en la estructura del HTML (párrafos, encabezados, listas) para evitar cortes semánticos y preservar mejor el contexto de cada sección.
-
----
-
-## 📖 Documentación Adicional
-
-- [docs/prueba-tecnica.md](docs/prueba-tecnica.md) - Especificación del proyecto
-- [docs/scraping_report.md](docs/scraping_report.md) - Reporte detallado de scraping
-- [docs/CHROMADB_PLAN.md](docs/CHROMADB_PLAN.md) - Plan de implementación ChromaDB
-- [docs/CHROMADB_VALIDATION_REPORT.md](docs/CHROMADB_VALIDATION_REPORT.md) - Reporte de validación completo
-
----
+**Tests disponibles:**
+- `test_chromadb.py` - Validación de base vectorial (creación, indexación, búsqueda, filtros)
+- `test_realistic_queries.py` - Evaluación con preguntas reales de usuarios
 
 ---
 

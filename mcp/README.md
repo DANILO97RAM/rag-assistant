@@ -392,26 +392,3 @@ El servidor genera logs informativos en stderr:
 📄 Artículo recuperado: https://... → 2 chunks
 📁 Categorías listadas: 47 encontradas
 ```
-
----
-
-## 🎯 Cumplimiento de Requisitos
-
-| Requisito | Estado | Implementación |
-|-----------|--------|----------------|
-| FastMCP SDK | ✅ | `from fastmcp import FastMCP` |
-| Transporte stdio | ✅ | `mcp.run(transport="stdio")` |
-| Tool: search_knowledge_base | ✅ | Línea 56-107 |
-| Tool: get_article_by_url | ✅ | Línea 110-158 |
-| Tool: list_categories | ✅ | Línea 161-185 |
-| Resource: knowledge-base://stats | ✅ | Línea 188-217 |
-| Validación de parámetros | ✅ | Checks en cada tool |
-| Manejo de errores | ✅ | try/except con mensajes descriptivos |
-| Metadatos (URL, score) | ✅ | Incluidos en respuestas |
-
----
-
-**Autor:** Danilo Gómez  
-**Versión:** 1.0.0  
-**Fecha:** 2026-04-10
-
