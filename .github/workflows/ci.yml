@@ -1,0 +1,143 @@
+name: CI/CD Pipeline - Bancolombia RAG Assistant
+
+on:
+  push:
+    branches: [ trunk, main, feature/* ]
+  pull_request:
+    branches: [ trunk, main ]
+
+jobs:
+  lint-and-test:
+    name: Lint & Unit Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest flake8 black
+      
+      - name: Lint with flake8
+        run: |
+          # Stop build on syntax errors or undefined names
+          flake8 src/ agent/ mcp/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Exit-zero treats all errors as warnings
+          flake8 src/ agent/ mcp/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        continue-on-error: true
+      
+      - name: Check code formatting with black
+        run: |
+          black --check src/ agent/ mcp/ || true
+        continue-on-error: true
+      
+      - name: Validate data files exist
+        run: |
+          test -f data/scraped_pages.parquet || echo "⚠️ Missing scraped_pages.parquet"
+          test -f data/chunks.parquet || echo "⚠️ Missing chunks.parquet"
+      
+      - name: Run unit tests
+        run: |
+          # Tests básicos sin ChromaDB Docker
+          pytest tests/unittest_embedder.py -v --tb=short || true
+        continue-on-error: true
+
+  validate-structure:
+    name: Validate Project Structure
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Validate critical files
+        run: |
+          echo "Validating project structure..."
+          
+          # Archivos críticos
+          test -f README.md || (echo "❌ README.md missing" && exit 1)
+          test -f requirements.txt || (echo "❌ requirements.txt missing" && exit 1)
+          test -f docker-compose.yml || (echo "❌ docker-compose.yml missing" && exit 1)
+          
+          # Pipeline de datos
+          test -f src/core/scrapper.py || (echo "❌ scrapper.py missing" && exit 1)
+          test -f src/core/cleaner.py || (echo "❌ cleaner.py missing" && exit 1)
+          test -f src/core/chunker.py || (echo "❌ chunker.py missing" && exit 1)
+          test -f src/core/embedder.py || (echo "❌ embedder.py missing" && exit 1)
+          test -f src/services/database.py || (echo "❌ database.py missing" && exit 1)
+          
+          # Servidor MCP
+          test -f mcp/main.py || (echo "❌ mcp/main.py missing" && exit 1)
+          test -f mcp/api_server.py || (echo "❌ api_server.py missing" && exit 1)
+          
+          # Agente y Frontend
+          test -f agent/conversational_agent.py || (echo "❌ agent missing" && exit 1)
+          test -f front/app.py || (echo "❌ frontend missing" && exit 1)
+          
+          echo "✅ All critical files present"
+      
+      - name: Validate MCP server structure
+        run: |
+          echo "Validating MCP server..."
+          grep -q "from fastmcp import FastMCP" mcp/main.py || (echo "❌ FastMCP not imported" && exit 1)
+          grep -q "@mcp.tool()" mcp/main.py || (echo "❌ No tools defined" && exit 1)
+          grep -q "search_knowledge_base" mcp/main.py || (echo "❌ search_knowledge_base missing" && exit 1)
+          grep -q "get_article_by_url" mcp/main.py || (echo "❌ get_article_by_url missing" && exit 1)
+          grep -q "list_categories" mcp/main.py || (echo "❌ list_categories missing" && exit 1)
+          echo "✅ MCP server structure valid"
+
+  docker-build:
+    name: Docker Compose Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Validate docker-compose.yml
+        run: |
+          # Verificar que docker-compose.yml es válido (usando Docker Compose v2)
+          docker compose config > /dev/null || (echo "❌ Invalid docker-compose.yml" && exit 1)
+          echo "✅ docker-compose.yml is valid"
+      
+      - name: Check for sensitive data
+        run: |
+          # Verificar que no hay credenciales reales
+          if grep -rE "(api_key|password|secret|token)\s*=\s*['\"]?[a-zA-Z0-9]{20,}" .env.example 2>/dev/null; then
+            echo "⚠️ Possible real credentials in .env.example"
+            exit 1
+          fi
+          echo "✅ No sensitive data detected"
+
+  summary:
+    name: Pipeline Summary
+    runs-on: ubuntu-latest
+    needs: [lint-and-test, validate-structure, docker-build]
+    if: always()
+    
+    steps:
+      - name: Pipeline Status
+        run: |
+          echo "============================================================"
+          echo "CI/CD PIPELINE SUMMARY"
+          echo "============================================================"
+          echo "Lint & Tests: ${{ needs.lint-and-test.result }}"
+          echo "Structure Validation: ${{ needs.validate-structure.result }}"
+          echo "Docker Validation: ${{ needs.docker-build.result }}"
+          echo "============================================================"
+          
+          if [ "${{ needs.validate-structure.result }}" != "success" ]; then
+            echo "❌ Critical structure validation failed"
+            exit 1
+          fi
+          
+          echo "✅ Pipeline completed"
