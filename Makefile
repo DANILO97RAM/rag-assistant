@@ -140,6 +140,10 @@ api-test: ## Ejecuta los tests del servidor API REST > Muestra estadisticas del 
 frontend-up: ## Ejecuta el frontend Streamlit (puerto 8501)
 	./venv/bin/streamlit run front/app.py
 
+# AGENTE CONVERSACIONAL
+agent: ## Ejecuta el agente conversacional en modo CLI (requiere API REST activo)
+	./venv/bin/$(PYTHON_BIN) agent/conversational_agent.py
+
 # Análisis de contenido
 
 analyze-content: ## Analiza el contenido scrappeado: muestra estadísticas del contenido scrappeado, calidad del scrapping y genera preguntas de ejemplo para evaluar la calidad del scrapping
