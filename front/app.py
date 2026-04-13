@@ -3,7 +3,7 @@
 Frontend Streamlit - Asistente Virtual Bancolombia
 
 Interfaz de chat para consultar la base de conocimiento de Bancolombia.
-Conecta con la API REST (puerto 8001) para realizar búsquedas semánticas.
+Conecta con el agente conversacional que consume el servidor MCP.
 
 
 Ejecución:
@@ -12,9 +12,16 @@ Ejecución:
 
 import streamlit as st
 import requests
+import sys
+import os
 from typing import Dict, List
 
-# Configuración de la API
+# Agregar raíz del proyecto al path para importar el agente
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from agent.conversational_agent import BancolombiaAgent
+
+# Configuración de la API (usada por sidebar para stats rápidas)
 API_BASE_URL = "http://localhost:8001"
 
 # ============================================================================
@@ -76,45 +83,30 @@ with st.sidebar:
 # ============================================================================
 
 st.title("🏦 Asistente Virtual Bancolombia")
-st.caption("Consulta información sobre productos y servicios de Bancolombia")
+st.caption("💬 Haz cualquier pregunta - el agente decidirá cómo responder")
+
+# Info sobre capacidades
+with st.expander("ℹ️ ¿Qué puedo preguntar?"):
+    st.markdown("""
+    El agente conversacional puede ayudarte con:
+    
+    - 🔍 **Búsquedas generales**: "¿Qué seguros ofrece Bancolombia?"
+    - 🔗 **Consultas por URL**: "Información de https://www.bancolombia.com/personas/creditos"
+    - 📂 **Categorías**: "¿Qué categorías hay disponibles?"
+    - 📊 **Estadísticas**: "¿Cuántos documentos hay indexados?"
+    
+    El agente analizará tu pregunta y usará la herramienta MCP adecuada automáticamente.
+    """)
+
+st.divider()
 
 # Inicializar historial de mensajes
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Inicializar modo de consulta
-if "query_mode" not in st.session_state:
-    st.session_state.query_mode = "pregunta"
-
-# Selector de modo de consulta
-st.subheader("Modo de consulta")
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    if st.button("Búsqueda por pregunta", use_container_width=True, 
-                 type="primary" if st.session_state.query_mode == "pregunta" else "secondary"):
-        st.session_state.query_mode = "pregunta"
-        st.rerun()
-
-with col2:
-    if st.button("Consulta por URL", use_container_width=True,
-                 type="primary" if st.session_state.query_mode == "url" else "secondary"):
-        st.session_state.query_mode = "url"
-        st.rerun()
-
-with col3:
-    if st.button("Ver categorías", use_container_width=True,
-                 type="primary" if st.session_state.query_mode == "categorias" else "secondary"):
-        st.session_state.query_mode = "categorias"
-        st.rerun()
-
-with col4:
-    if st.button("Ver estadísticas", use_container_width=True,
-                 type="primary" if st.session_state.query_mode == "stats" else "secondary"):
-        st.session_state.query_mode = "stats"
-        st.rerun()
-
-st.divider()
+# Inicializar agente conversacional (Cliente MCP)
+if "agent" not in st.session_state:
+    st.session_state.agent = BancolombiaAgent(api_url=API_BASE_URL)
 
 # Mostrar historial de mensajes
 for message in st.session_state.messages:
@@ -122,36 +114,44 @@ for message in st.session_state.messages:
         st.markdown(message["content"], unsafe_allow_html=True)
 
 # ============================================================================
-# MODO 1: BÚSQUEDA POR PREGUNTA
+# CHAT ÚNICO - El agente decide qué tool MCP usar
 # ============================================================================
 
-if st.session_state.query_mode == "pregunta":
-    if prompt := st.chat_input("¿Qué deseas saber sobre Bancolombia?"):
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        
-        with st.chat_message("user"):
-            st.markdown(prompt)
-        
-        with st.chat_message("assistant"):
-            with st.spinner("Buscando información..."):
-                try:
-                    response = requests.post(
-                        f"{API_BASE_URL}/search",
-                        json={"query": prompt, "n_results": n_results},
-                        timeout=10
-                    )
+if prompt := st.chat_input("Escribe tu pregunta o URL aquí..."):
+    # Agregar mensaje del usuario
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    
+    # Respuesta del agente
+    with st.chat_message("assistant"):
+        with st.spinner("🤖 El agente está analizando tu consulta..."):
+            try:
+                # El agente decide automáticamente qué tool usar
+                respuesta = st.session_state.agent.ask(prompt, n_results=n_results)
+                
+                # Formatear respuesta según el tipo
+                if respuesta.get("error"):
+                    # Error del agente
+                    answer = f"❌ **Error:** {respuesta['message']}\n\n"
+                    if "suggestion" in respuesta:
+                        answer += f"💡 **Sugerencia:** {respuesta['suggestion']}"
+                
+                elif respuesta.get("success"):
+                    tool_used = respuesta.get("tool") or respuesta.get("resource", "unknown")
                     
-                    if response.status_code == 200:
-                        data = response.json()
-                        
-                        if data["total_results"] == 0:
+                    # Búsqueda semántica (search_knowledge_base)
+                    if "documents" in respuesta:
+                        if respuesta["total_results"] == 0:
                             answer = "No encontré información sobre esa consulta.\n\n"
                             answer += "Intenta reformular tu pregunta o consulta sobre:\n"
                             answer += "- Seguros\n- Créditos\n- Inversiones\n- Productos bancarios"
                         else:
-                            answer = f"Encontré **{data['total_results']} documentos** relevantes:\n\n"
+                            answer = f"📚 Encontré **{respuesta['total_results']} documentos** relevantes:\n\n"
+                            answer += f"*🔧 Tool MCP: `{tool_used}`*\n\n"
                             
-                            for doc in data["documents"]:
+                            for doc in respuesta["documents"]:
                                 score_badge = f"<span style='background-color: #FFD700; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;'>Score: {doc['similarity_score']:.2f}</span>"
                                 answer += f"### {doc['rank']}. {doc['title']} {score_badge}\n\n"
                                 answer += f"**Categoría:** {doc['category']}\n\n"
@@ -162,199 +162,79 @@ if st.session_state.query_mode == "pregunta":
                                 answer += f"{content_preview}\n\n"
                                 answer += f"[Ver artículo completo]({doc['url']})\n\n"
                                 answer += "---\n\n"
+                    
+                    # Artículo por URL (get_article_by_url)
+                    elif "chunks" in respuesta:
+                        answer = f"## 📄 {respuesta['title']}\n\n"
+                        answer += f"*🔧 Tool MCP: `{tool_used}`*\n\n"
+                        answer += f"**Categoría:** {respuesta['category']}\n\n"
+                        answer += f"**Total chunks:** {len(respuesta['chunks'])}\n\n"
+                        answer += f"**URL:** {respuesta['url']}\n\n"
+                        answer += "---\n\n"
                         
-                        st.markdown(answer, unsafe_allow_html=True)
-                        st.session_state.messages.append({"role": "assistant", "content": answer})
-                    else:
-                        error_msg = f"Error en la búsqueda (código {response.status_code})"
-                        st.error(error_msg)
-                        st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                        
-                except requests.exceptions.ConnectionError:
-                    error_msg = "No se pudo conectar con la API. Ejecuta: make mcp-up"
-                    st.error(error_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                except requests.exceptions.Timeout:
-                    error_msg = "La búsqueda tardó demasiado. Intenta con otra pregunta o reduce el número de resultados."
-                    st.warning(error_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                except Exception as e:
-                    error_msg = f"Error inesperado: {str(e)}"
-                    st.error(error_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
-
-# ============================================================================
-# MODO 2: CONSULTA POR URL
-# ============================================================================
-
-elif st.session_state.query_mode == "url":
-    st.info("Ingresa la URL completa de un artículo de Bancolombia para ver su contenido completo.")
-    
-    url_input = st.text_input(
-        "URL del artículo:",
-        placeholder="https://www.bancolombia.com/personas/creditos",
-        help="Debe ser una URL válida de bancolombia.com"
-    )
-    
-    if st.button("Consultar artículo", type="primary"):
-        if url_input:
-            st.session_state.messages.append({"role": "user", "content": f"Consulta por URL: {url_input}"})
-            
-            with st.chat_message("user"):
-                st.markdown(f"Consulta por URL: {url_input}")
-            
-            with st.chat_message("assistant"):
-                with st.spinner("Recuperando artículo..."):
-                    try:
-                        response = requests.get(
-                            f"{API_BASE_URL}/article",
-                            params={"url": url_input},
-                            timeout=10
-                        )
-                        
-                        if response.status_code == 200:
-                            data = response.json()
-                            
-                            answer = f"## {data['title']}\n\n"
-                            answer += f"**Categoría:** {data['category']}\n\n"
-                            answer += f"**Total de chunks:** {data['total_chunks']}\n\n"
-                            answer += f"**URL:** {data['url']}\n\n"
+                        for i, chunk in enumerate(respuesta['chunks'], 1):
+                            answer += f"### Sección {i}\n\n"
+                            answer += f"{chunk['content']}\n\n"
+                            answer += f"*Palabras: {chunk['word_count']}*\n\n"
                             answer += "---\n\n"
-                            
-                            for i, chunk in enumerate(data['chunks'], 1):
-                                answer += f"### Información {i}\n\n"
-                                answer += f"{chunk['content']}\n\n"
-                                answer += f"*Palabras: {chunk['word_count']}*\n\n"
-                                answer += "---\n\n"
-                            
-                            st.markdown(answer, unsafe_allow_html=True)
-                            st.session_state.messages.append({"role": "assistant", "content": answer})
-                        elif response.status_code == 404:
-                            error_msg = f"No se encontró artículo para la URL: {url_input}"
-                            st.warning(error_msg)
-                            st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                        elif response.status_code == 400:
-                            error_msg = "URL inválida. Debe ser de bancolombia.com"
-                            st.error(error_msg)
-                            st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                        else:
-                            error_msg = f"Error en la consulta (código {response.status_code})"
-                            st.error(error_msg)
-                            st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                            
-                    except requests.exceptions.ConnectionError:
-                        error_msg = "No se pudo conectar con la API. Ejecuta: make mcp-up"
-                        st.error(error_msg)
-                        st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                    except Exception as e:
-                        error_msg = f"Error inesperado: {str(e)}"
-                        st.error(error_msg)
-                        st.session_state.messages.append({"role": "assistant", "content": error_msg})
-        else:
-            st.warning("Por favor ingresa una URL")
-
-# ============================================================================
-# MODO 3: VER CATEGORÍAS
-# ============================================================================
-
-elif st.session_state.query_mode == "categorias":
-    st.info("Lista de todas las categorías disponibles en la base de conocimiento.")
-    
-    if st.button("Listar categorías", type="primary"):
-        st.session_state.messages.append({"role": "user", "content": "Listar categorías"})
-        
-        with st.chat_message("user"):
-            st.markdown("Listar categorías")
-        
-        with st.chat_message("assistant"):
-            with st.spinner("Recuperando categorías..."):
-                try:
-                    response = requests.get(f"{API_BASE_URL}/categories", timeout=5)
                     
-                    if response.status_code == 200:
-                        data = response.json()
-                        
-                        answer = f"## Categorías disponibles\n\n"
-                        answer += f"**Total:** {data['total_categories']}\n\n"
+                    # Categorías (list_categories)
+                    elif "categories" in respuesta:
+                        answer = f"## 📂 Categorías Disponibles\n\n"
+                        answer += f"*🔧 Tool MCP: `{tool_used}`*\n\n"
+                        answer += f"**Total:** {respuesta['total_categories']}\n\n"
                         answer += "---\n\n"
                         
-                        for i, category in enumerate(data['categories'], 1):
-                            answer += f"{i}. {category}\n"
+                        # Mostrar en columnas
+                        cats = respuesta['categories']
+                        mid = len(cats) // 2
+                        col1_cats = cats[:mid]
+                        col2_cats = cats[mid:]
                         
-                        st.markdown(answer)
-                        st.session_state.messages.append({"role": "assistant", "content": answer})
-                    else:
-                        error_msg = f"Error obteniendo categorías (código {response.status_code})"
-                        st.error(error_msg)
-                        st.session_state.messages.append({"role": "assistant", "content": error_msg})
+                        cols = st.columns(2)
+                        with cols[0]:
+                            for i, cat in enumerate(col1_cats, 1):
+                                st.write(f"{i}. {cat}")
+                        with cols[1]:
+                            for i, cat in enumerate(col2_cats, mid + 1):
+                                st.write(f"{i}. {cat}")
                         
-                except requests.exceptions.ConnectionError:
-                    error_msg = "No se pudo conectar con la API. Ejecuta: make mcp-up"
-                    st.error(error_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                except Exception as e:
-                    error_msg = f"Error inesperado: {str(e)}"
-                    st.error(error_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
-
-# ============================================================================
-# MODO 4: VER ESTADÍSTICAS
-# ============================================================================
-
-elif st.session_state.query_mode == "stats":
-    st.info("Estadísticas completas de la base de conocimiento.")
-    
-    if st.button("Mostrar estadísticas", type="primary"):
-        st.session_state.messages.append({"role": "user", "content": "Mostrar estadísticas"})
-        
-        with st.chat_message("user"):
-            st.markdown("Mostrar estadísticas")
-        
-        with st.chat_message("assistant"):
-            with st.spinner("Recuperando estadísticas..."):
-                try:
-                    response = requests.get(f"{API_BASE_URL}/stats", timeout=5)
+                        answer = f"Listadas {respuesta['total_categories']} categorías arriba ↑"
                     
-                    if response.status_code == 200:
-                        data = response.json()
-                        
-                        answer = "## Estadísticas de la Base de Conocimiento\n\n"
+                    # Estadísticas (knowledge-base://stats)
+                    elif "stats" in respuesta:
+                        data = respuesta['stats']
+                        answer = "## 📊 Estadísticas de la Base de Conocimiento\n\n"
+                        answer += f"*🔧 Resource MCP: `{respuesta['resource']}`*\n\n"
                         answer += f"**Estado:** {data['status']}\n\n"
-                        answer += f"**Total de documentos:** {data['total_documents']}\n\n"
-                        answer += f"**Número de categorías:** {data['num_categories']}\n\n"
-                        answer += f"**Dimensión de embeddings:** {data['embedding_dimension']}\n\n"
-                        answer += f"**Métrica de distancia:** {data['distance_metric']}\n\n"
-                        answer += f"**Fecha de última actualización:** {data['fecha_ultima_actualizacion']}\n\n"
+                        answer += f"**Total documentos:** {data['total_documents']}\n\n"
+                        answer += f"**Categorías:** {data['num_categories']}\n\n"
+                        answer += f"**Dimensión embeddings:** {data['embedding_dimension']}\n\n"
+                        answer += f"**Métrica:** {data['distance_metric']}\n\n"
+                        answer += f"**Última actualización:** {data['fecha_ultima_actualizacion']}\n\n"
                         answer += f"**Fuente:** {data['source']}\n\n"
-                        answer += "---\n\n"
-                        answer += "### Categorías principales\n\n"
-                        
-                        for i, category in enumerate(data['categories'][:20], 1):
-                            answer += f"{i}. {category}\n"
-                        
-                        if data['num_categories'] > 20:
-                            answer += f"\n... y {data['num_categories'] - 20} categorías más\n"
-                        
-                        st.markdown(answer)
-                        st.session_state.messages.append({"role": "assistant", "content": answer})
+                    
                     else:
-                        error_msg = f"Error obteniendo estadísticas (código {response.status_code})"
-                        st.error(error_msg)
-                        st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                        
-                except requests.exceptions.ConnectionError:
-                    error_msg = "No se pudo conectar con la API. Ejecuta: make mcp-up"
-                    st.error(error_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
-                except Exception as e:
-                    error_msg = f"Error inesperado: {str(e)}"
-                    st.error(error_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
+                        answer = f"Respuesta del agente: {respuesta}"
+                
+                else:
+                    answer = f"❌ Respuesta inesperada del agente: {respuesta}"
+                
+                st.markdown(answer, unsafe_allow_html=True)
+                st.session_state.messages.append({"role": "assistant", "content": answer})
+                    
+            except Exception as e:
+                error_msg = f"❌ Error al comunicarse con el agente: {str(e)}"
+                st.error(error_msg)
+                st.session_state.messages.append({"role": "assistant", "content": error_msg})
 
 # ============================================================================
 # FOOTER
 # ============================================================================
 
 st.divider()
-st.caption("Asistente Virtual Bancolombia | Powered by RAG + ChromaDB + Streamlit | By Danilo Ramirez Gomez")
-st.caption("Base de conocimiento: extraído de bancolombia.com/personas")
+st.caption("🏦 Asistente Virtual Bancolombia | Powered by RAG + MCP + Agente Conversacional + ChromaDB + Streamlit")
+st.caption("📐 Arquitectura: Frontend → Agente (Cliente MCP) → Servidor MCP → ChromaDB")
+st.caption("👨‍💻 By Danilo Ramirez Gomez | Base de conocimiento: bancolombia.com/personas")
+
+# Código generado por GitHub Copilot
