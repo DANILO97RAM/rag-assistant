@@ -72,6 +72,21 @@ Ver reporte completo: [docs/CHROMADB_VALIDATION_REPORT.md](docs/CHROMADB_VALIDAT
 
 ```
 rag-assistant/
+├── .github/
+│   └── workflows/
+│       └── ci.yml                   # Pipeline CI/CD (lint, tests, validación)
+├── agent/
+│   ├── conversational_agent.py      # Cliente MCP con razonamiento
+│   ├── __init__.py                  # Módulo exportable
+│   └── README.md                    # Documentación del agente
+├── front/
+│   ├── app.py                       # Frontend Streamlit (chat único)
+│   └── README.md                    # Guía de uso del frontend
+├── mcp/
+│   ├── main.py                      # Servidor MCP (FastMCP + stdio)
+│   ├── api_server.py                # API REST wrapper (puerto 8001)
+│   ├── test_server.py               # Tests del servidor MCP
+│   └── README.md                    # Documentación MCP
 ├── src/
 │   ├── config/
 │   │   ├── config.json              # Configuración del sistema
@@ -83,22 +98,28 @@ rag-assistant/
 │   │   ├── embedder.py              # Sentence Transformers wrapper
 │   │   └── processor.py             # Orquestador limpieza + chunking
 │   ├── services/
-│   │   ├── database.py              # ChromaDB service
-│   └── main.py                      # CLI principal
+│   │   └── database.py              # ChromaDB service
+│   └── main.py                      # CLI principal (pipeline ETL)
 ├── tests/
-│   ├── test_chromadb.py                    # Tests unitarios ChromaDB
-│   └── test_chromadb_realistic_queries.py  # Validación con queries
+│   ├── test_chromadb.py             # Tests unitarios ChromaDB
+│   └── test_realistic_queries.py    # Validación con queries
 ├── scripts/
 │   └── analyze_content.py           # Análisis de contenido scrapeado
 ├── data/
 │   ├── scraped_pages.parquet        # 50 páginas (raw)
 │   ├── chunks.parquet               # 94 chunks procesados
 │   ├── embeddings_sentence-transformers.parquet  # 94 vectores 384D
-│   └── chroma_db/                   # Base de datos ChromaDB
+│   └── chroma_db/                   # Persistencia ChromaDB
 ├── docs/
-│   └── prueba-tecnica.md            # Reporte de validación completo
+│   ├── DIAGRAMA_ARQUITECTURA.html   # Diagrama Mermaid interactivo
+│   ├── DIAGRAMA_ARQUITECTURA.png    # Diagrama visual arquitectura
+│   ├── ARQUITECTURA_MCP.md          # Justificación técnica MCP
+│   ├── validacion_pre_entrega.sh    # Script de validación final
+│   └── prueba-tecnica.md            # Especificación del proyecto
+├── docker-compose.yml               # ChromaDB container (puerto 8000)
 ├── requirements.txt                 # Dependencias Python
-└── Makefile                         # Comandos de automatización
+├── Makefile                         # Comandos de automatización
+└── README.md                        # Este archivo
 ```
 
 ---
