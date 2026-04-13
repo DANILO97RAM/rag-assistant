@@ -105,8 +105,8 @@ jobs:
       
       - name: Validate docker-compose.yml
         run: |
-          # Verificar que docker-compose.yml es válido
-          docker-compose config > /dev/null || (echo "❌ Invalid docker-compose.yml" && exit 1)
+          # Verificar que docker-compose.yml es válido (usando Docker Compose v2)
+          docker compose config > /dev/null || (echo "❌ Invalid docker-compose.yml" && exit 1)
           echo "✅ docker-compose.yml is valid"
       
       - name: Check for sensitive data
