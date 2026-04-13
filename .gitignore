@@ -69,4 +69,7 @@ n8n_data/
 docs/*.md
 docs/*.sh
 docs/*.json
+docs/*.txt
+docs/*.html
+
 
